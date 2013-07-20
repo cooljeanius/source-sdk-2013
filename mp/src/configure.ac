@@ -1,0 +1,44 @@
+dnl#                                               -*- Autoconf -*-
+dnl# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([source-sdk-mp], [2013], [https://github.com/ValveSoftware/source-sdk-2013/issues])
+AC_CONFIG_SRCDIR([common/compiledcaptionswap.cpp])
+AC_CONFIG_HEADERS([config.h])
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_CC
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_FUNC_ALLOCA
+AC_CHECK_HEADERS([fcntl.h float.h limits.h locale.h malloc.h memory.h netdb.h netinet/in.h stddef.h stdint.h stdlib.h string.h strings.h sys/mount.h sys/socket.h sys/statvfs.h sys/time.h unistd.h utime.h wchar.h wctype.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_HEADER_STDBOOL
+AC_TYPE_UID_T
+AC_C_INLINE
+AC_TYPE_MODE_T
+AC_C_RESTRICT
+AC_TYPE_SIZE_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_TYPE_UINT8_T
+AC_CHECK_TYPES([ptrdiff_t])
+
+# Checks for library functions.
+AC_FUNC_ERROR_AT_LINE
+AC_FUNC_FSEEKO
+AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK
+AC_FUNC_MALLOC
+AC_FUNC_MKTIME
+AC_FUNC_MMAP
+AC_FUNC_REALLOC
+AC_FUNC_STRTOD
+AC_CHECK_FUNCS([atexit floor getcwd gethostbyname gettimeofday iswprint memmove memset mkdir munmap pow rint select setenv setlocale socket sqrt strcasecmp strchr strdup strerror strpbrk strrchr strspn strstr strtol strtoul])
+
+# Comment out subdirs because they currently give me issues
+#AC_CONFIG_SUBDIRS([thirdparty/protobuf-2.3.0])
+AC_OUTPUT
