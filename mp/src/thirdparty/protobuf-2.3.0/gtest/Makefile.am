@@ -1,8 +1,10 @@
-# Automake file
+dnl# Automake file
 
-# TODO(chandlerc@google.com): automate the generation of *.h from *.h.pump.
+ACLOCAL_AMFLAGS = -I m4
 
-# Nonstandard package files for distribution
+dnl# TODO(chandlerc@google.com): automate the generation of *.h from *.h.pump.
+
+dnl# Nonstandard package files for distribution
 EXTRA_DIST = \
   CHANGES \
   CONTRIBUTORS \
@@ -19,7 +21,7 @@ EXTRA_DIST = \
   scripts/test/Makefile \
   test/gtest_all_test.cc
 
-# MSVC project files
+dnl# MSVC project files
 EXTRA_DIST += \
   msvc/gtest-md.sln \
   msvc/gtest.sln \
@@ -32,7 +34,7 @@ EXTRA_DIST += \
   msvc/gtest_unittest-md.vcproj \
   msvc/gtest_unittest.vcproj
 
-# xcode project files
+dnl# xcode project files
 EXTRA_DIST += \
   xcode/Config/DebugProject.xcconfig \
   xcode/Config/FrameworkTarget.xcconfig \
@@ -45,7 +47,7 @@ EXTRA_DIST += \
   xcode/Scripts/runtests.sh \
   xcode/gtest.xcodeproj/project.pbxproj
 
-# xcode sample files
+dnl# xcode sample files
 EXTRA_DIST += \
   xcode/Samples/FrameworkSample/Info.plist \
   xcode/Samples/FrameworkSample/widget_test.cc \
@@ -62,10 +64,10 @@ EXTRA_DIST += \
   codegear/gtest_unittest.cbproj \
   codegear/gtest.groupproj
 
-# TODO(wan@google.com): integrate scripts/gen_gtest_pred_impl.py into
-#   the build system such that a user can specify the maximum predicate
-#   arity here and have the script automatically generate the
-#   corresponding .h and .cc files.
+dnl# TODO(wan@google.com): integrate scripts/gen_gtest_pred_impl.py into
+dnl#   the build system such that a user can specify the maximum predicate
+dnl#   arity here and have the script automatically generate the
+dnl#   corresponding .h and .cc files.
 
 # Scripts and utilities
 bin_SCRIPTS = scripts/gtest-config

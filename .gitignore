@@ -1,6 +1,6 @@
 # Files to ignore when considering what GIT should commit.
 
-# Visual Studio 
+# Visual Studio and MonoDevelop
 *.suo
 *.user
 *.sln.docstates
@@ -19,6 +19,7 @@ ipch
 *.idb
 *.vcxproj
 *.sln
+*.userprefs
 
 # OSX/Linux build products
 *.mak
@@ -59,6 +60,18 @@ config.cfg
 *p/src/confdefs*
 *p/src/conftest*
 *p/src/config.h
+*p/src/*/*/confdefs*
+*p/src/*/*/conftest*
+*p/src/*/*/config.h
+*stamp-h*
+*.status
+*deps/*.*o
+*.Plo
+*.o
+*~
+
+# Scons
+*.sconsign.dblite
 
 # other OS X junk
 *DS_Store*

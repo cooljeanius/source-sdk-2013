@@ -2,7 +2,7 @@ dnl#                                               -*- Autoconf -*-
 dnl# Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([source-sdk-mp], [2013], [https://github.com/ValveSoftware/source-sdk-2013/issues])
+AC_INIT([source-sdk-mp],[2013],[https://github.com/ValveSoftware/source-sdk-2013/issues])
 AC_CONFIG_SRCDIR([common/compiledcaptionswap.cpp])
 AC_CONFIG_HEADERS([config.h])
 

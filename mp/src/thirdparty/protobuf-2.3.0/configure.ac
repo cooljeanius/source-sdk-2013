@@ -1,7 +1,7 @@
 ## Process this file with autoconf to produce configure.
 ## In general, the safest way to proceed is to run ./autogen.sh
 
-AC_PREREQ(2.59)
+AC_PREREQ([2.69])
 
 # Note:  If you change the version, you must also update it in:
 # * java/pom.xml
@@ -71,7 +71,7 @@ ACX_CHECK_SUNCC
 
 # Have to do libtool after SUNCC, other wise it "helpfully" adds Crun Cstd
 # to the link
-AC_PROG_LIBTOOL
+LT_INIT
 
 # Checks for header files.
 AC_HEADER_STDC
