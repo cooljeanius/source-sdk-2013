@@ -14,8 +14,6 @@
 
 @SET_MAKE@
 
-# Automake file
-
 
 
 
@@ -1076,16 +1074,6 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I m4
 
-# TODO(chandlerc@google.com): automate the generation of *.h from *.h.pump.
-
-# Nonstandard package files for distribution
-
-# MSVC project files
-
-# xcode project files
-
-# xcode sample files
-
 # C++Builder project files
 EXTRA_DIST = CHANGES CONTRIBUTORS \
 	include/gtest/gtest-param-test.h.pump \
@@ -1117,11 +1105,6 @@ EXTRA_DIST = CHANGES CONTRIBUTORS \
 	codegear/gtest.cbproj codegear/gtest_main.cbproj \
 	codegear/gtest_unittest.cbproj codegear/gtest.groupproj \
 	$(m4data_DATA) $(am__append_3)
-
-# TODO(wan@google.com): integrate scripts/gen_gtest_pred_impl.py into
-#   the build system such that a user can specify the maximum predicate
-#   arity here and have the script automatically generate the
-#   corresponding .h and .cc files.
 
 # Scripts and utilities
 bin_SCRIPTS = scripts/gtest-config
@@ -3075,6 +3058,22 @@ uninstall-am: uninstall-binSCRIPTS uninstall-libLTLIBRARIES \
 	uninstall-m4dataDATA uninstall-pkgincludeHEADERS \
 	uninstall-pkginclude_internalHEADERS
 
+dnl# Automake file
+
+dnl# TODO(chandlerc@google.com): automate the generation of *.h from *.h.pump.
+
+dnl# Nonstandard package files for distribution
+
+dnl# MSVC project files
+
+dnl# xcode project files
+
+dnl# xcode sample files
+
+dnl# TODO(wan@google.com): integrate scripts/gen_gtest_pred_impl.py into
+dnl#   the build system such that a user can specify the maximum predicate
+dnl#   arity here and have the script automatically generate the
+dnl#   corresponding .h and .cc files.
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

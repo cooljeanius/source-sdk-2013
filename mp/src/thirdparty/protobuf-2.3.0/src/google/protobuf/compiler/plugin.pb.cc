@@ -2,6 +2,25 @@
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
 #include "google/protobuf/compiler/plugin.pb.h"
+
+#if _MSC_VER >= 1300
+#ifndef _PS3
+#pragma warning(push)
+#pragma warning(disable : 4530)	// warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc (disabled due to std headers having exception syntax)
+#pragma warning(disable : 4244)	// warning C4244:  warning C4244: '=' : conversion from '__w64 int' to 'int', possible loss of data
+#pragma warning(disable : 4267)	// warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+#pragma warning(disable : 4125)	// warning C4125: decimal digit terminates octal escape sequence
+#pragma warning(disable : 4127)	// warning C4127: conditional expression is constant
+#pragma warning(disable : 4100)	// warning C4100: 'op' : unreferenced formal parameter
+#endif // _PS3
+#endif // _MSC_VER
+#if _GNUC
+#ifndef _PS3
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wshadow"
+#endif // _PS3
+#endif // _GNUC
+
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
@@ -1082,3 +1101,14 @@ void CodeGeneratorResponse::Swap(CodeGeneratorResponse* other) {
 }  // namespace google
 
 // @@protoc_insertion_point(global_scope)
+#if _MSC_VER >= 1300
+#ifndef _PS3
+#pragma warning( pop )
+#endif // _PS3
+#endif // _MSC_VER
+#if _GNUC
+#ifndef _PS3
+#pragma GCC diagnostic pop
+#endif // _PS3
+#endif // _GNUC
+

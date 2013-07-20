@@ -1,21 +1,23 @@
-## Process this file with autoconf to produce configure.
-## In general, the safest way to proceed is to run ./autogen.sh
+dnl##                                               -*- Autoconf -*-
+dnl## Process this file with autoconf to produce configure.
+dnl## In general, the safest way to proceed is to run ./autogen.sh
+dnl## ^ Actually the real safest way is just to run `autoreconf` 
+dnl## with your favorite flags, but whatever...
 
 AC_PREREQ([2.69])
 
-# Note:  If you change the version, you must also update it in:
-# * java/pom.xml
-# * python/setup.py
-# * src/google/protobuf/stubs/common.h
-# * src/Makefile.am (Update -version-info for LDFLAGS if needed)
-#
-# In the SVN trunk, the version should always be the next anticipated release
-# version with the "-pre" suffix.  (We used to use "-SNAPSHOT" but this pushed
-# the size of one file name in the dist tarfile over the 99-char limit.)
+dnl# Note:  If you change the version, you must also update it in:
+dnl# * java/pom.xml
+dnl# * python/setup.py
+dnl# * src/google/protobuf/stubs/common.h
+dnl# * src/Makefile.am (Update -version-info for LDFLAGS if needed)
+dnl#
+dnl# In the SVN trunk, the version should always be the next anticipated release
+dnl# version with the "-pre" suffix.  (We used to use "-SNAPSHOT" but this pushed
+dnl# the size of one file name in the dist tarfile over the 99-char limit.)
 AC_INIT([Protocol Buffers],[2.3.0],[protobuf@googlegroups.com],[protobuf])
 
-
-AC_CONFIG_SRCDIR(src/google/protobuf/message.cc)
+AC_CONFIG_SRCDIR([src/google/protobuf/message.cc])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -28,7 +30,8 @@ AS_IF([test "x${ac_cv_env_CXXFLAGS_set}" = "x"],
 
 AC_CANONICAL_TARGET
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([1.9 dist-bzip2 dist-zip foreign subdir-objects -Wall])
+AM_MAINTAINER_MODE
 
 AC_ARG_WITH([zlib],
   [AS_HELP_STRING([--with-zlib],
@@ -41,11 +44,16 @@ AC_ARG_WITH([protoc],
   [],[with_protoc=no])
 
 # Checks for programs.
-AC_PROG_CC
+ACX_USE_SYSTEM_EXTENSIONS
+AM_PROG_AR
+AM_PROG_AS
+AM_PROG_CC_C_O
+AC_PROG_CPP
 AC_PROG_CXX
 AC_LANG([C++])
-ACX_USE_SYSTEM_EXTENSIONS
-AM_CONDITIONAL(GCC, test "$GCC" = yes)   # let the Makefile know if we're gcc
+AC_PROG_RANLIB
+AM_CONDITIONAL([GCC], [test "$GCC" = yes])   # let the Makefile know if we're gcc
+PKG_PROG_PKG_CONFIG
 
 # test_util.cc takes forever to compile with GCC and optimization turned on.
 AC_MSG_CHECKING([C++ compiler flags...])
@@ -65,22 +73,42 @@ AS_IF([test "x${ac_cv_env_CXXFLAGS_set}" = "x"],[
   AC_MSG_RESULT([use user-supplied: $CXXFLAGS])
 ])
 
-AC_SUBST(PROTOBUF_OPT_FLAG)
+AC_SUBST([PROTOBUF_OPT_FLAG])
 
 ACX_CHECK_SUNCC
 
-# Have to do libtool after SUNCC, other wise it "helpfully" adds Crun Cstd
-# to the link
+dnl# Have to do libtool after SUNCC, other wise it "helpfully" adds Crun Cstd
+dnl# to the link
 LT_INIT
+LT_LANG([C++])
 
 # Checks for header files.
-AC_HEADER_STDC
-AC_CHECK_HEADERS([fcntl.h inttypes.h limits.h stdlib.h unistd.h])
+AC_CHECK_HEADERS([fcntl.h float.h limits.h locale.h stdio.h sys/param.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_HEADER_STDBOOL
+AC_C_INLINE
+AC_TYPE_INT8_T
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
+AC_TYPE_INT64_T
+AC_TYPE_OFF_T
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_TYPE_UINT8_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_CHECK_TYPES([ptrdiff_t])
 
 # Checks for library functions.
+AC_FUNC_ERROR_AT_LINE
+AC_FUNC_FORK
+AC_FUNC_MALLOC
 AC_FUNC_MEMCMP
+AC_FUNC_MMAP
 AC_FUNC_STRTOD
-AC_CHECK_FUNCS([ftruncate memset mkdir strchr strerror strtol])
+AC_CHECK_FUNCS([dup2 ftruncate localeconv memmove memset mkdir realpath select setlocale strchr strdup strerror strpbrk strtol strtoul strtoull])
 
 # Check for zlib.
 HAVE_ZLIB=0
@@ -88,13 +116,13 @@ AS_IF([test "$with_zlib" != no], [
   AC_MSG_CHECKING([zlib version])
 
   # First check the zlib header version.
-  AC_COMPILE_IFELSE(
+  AC_COMPILE_IFELSE([
     AC_LANG_PROGRAM([[
         #include <zlib.h>
         #if !defined(ZLIB_VERNUM) || (ZLIB_VERNUM < 0x1204)
         # error zlib version too old
         #endif
-        ]], []), [
+        ]], [])], [
     AC_MSG_RESULT([ok (1.2.0.4 or later)])
 
     # Also need to add -lz to the linker flags and make sure this succeeds.
@@ -135,12 +163,12 @@ AS_IF([test "$with_protoc" != "no"], [
 ])
 AM_CONDITIONAL([USE_EXTERNAL_PROTOC], [test "$with_protoc" != "no"])
 
-ACX_PTHREAD
+AX_PTHREAD
 AC_CXX_STL_HASH
 
-# HACK:  Make gtest's configure script pick up our copy of CFLAGS and CXXFLAGS,
-#   since the flags added by ACX_CHECK_SUNCC must be used when compiling gtest
-#   too.
+dnl# HACK:  Make gtest's configure script pick up our copy of CFLAGS and CXXFLAGS,
+dnl#   since the flags added by ACX_CHECK_SUNCC must be used when compiling gtest
+dnl#   too.
 export CFLAGS
 export CXXFLAGS
 AC_CONFIG_SUBDIRS([gtest])

@@ -23,6 +23,8 @@ if test ! -e gtest; then
   mv gtest-1.3.0 gtest
 fi
 
+echo "This script pretty much just runs \"autoreconf\"; feel free to just do that yourself."
+
 set -ex
 
 # Temporary hack:  Must change C runtime library to "multi-threaded DLL",
@@ -35,7 +37,7 @@ sed -i -e 's/RuntimeLibrary="5"/RuntimeLibrary="3"/g;
            s/RuntimeLibrary="4"/RuntimeLibrary="2"/g;' gtest/msvc/*.vcproj
 
 # TODO(kenton):  Remove the ",no-obsolete" part and fix the resulting warnings.
-autoreconf -f -i -Wall,no-obsolete
+autoreconf -f -i -v -Wall,no-obsolete
 
 rm -rf autom4te.cache config.h.in~
 exit 0
