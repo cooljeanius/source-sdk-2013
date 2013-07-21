@@ -3,12 +3,13 @@
 
 AC_PREREQ([2.69])
 AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
-AC_CONFIG_SRCDIR([common/compiledcaptionswap.cpp])
+AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_MAKE_SET
 
 # Checks for libraries.
 
@@ -39,5 +40,6 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([atexit floor getcwd gethostbyname gettimeofday iswprint memmove memset mkdir munmap pow rint select setenv setlocale socket sqrt strcasecmp strchr strdup strerror strpbrk strrchr strspn strstr strtol strtoul])
 
+AC_CONFIG_FILES([Makefile])
 AC_CONFIG_SUBDIRS([thirdparty/protobuf-2.3.0])
 AC_OUTPUT

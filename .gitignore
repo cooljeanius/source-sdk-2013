@@ -60,9 +60,11 @@ config.cfg
 *p/src/confdefs*
 *p/src/conftest*
 *p/src/config.h
+*p/src/Makefile
 *p/src/*/*/confdefs*
 *p/src/*/*/conftest*
 *p/src/*/*/config.h
+*p/src/*/*/Makefile
 *stamp-h*
 *.status
 *deps/*.*o

@@ -11,9 +11,8 @@
 # via AC_MSG_CHECKING + AC_MSG_RESULT.  (TODO(csilvers): can we cache?)
 
 AC_DEFUN([AC_CXX_STL_HASH],
-  [AC_MSG_CHECKING(the location of hash_map)
-  AC_LANG_SAVE
-   AC_LANG_CPLUSPLUS
+  [AC_MSG_CHECKING([the location of hash_map])
+  AC_LANG_PUSH([C++])
    ac_cv_cxx_hash_map_header=""
    ac_cv_cxx_hash_map_class=""
    for location in [tr1/unordered_map ext/hash_map hash_map]; do
@@ -27,12 +26,12 @@ AC_DEFUN([AC_CXX_STL_HASH],
            # include a call to find() in our test to detect this broken
            # implementation and avoid using it.  Note that ext/hash_map works
            # fine on this platform, so we'll end up using that.
-           AC_TRY_COMPILE([#include <$location>],
-                          [const ${namespace}::$name<int, int> t;
-                           t.find(1);],
+           AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <$location>]],
+                          [[const ${namespace}::$name<int, int> t;
+                           t.find(1);]])],
                           [ac_cv_cxx_hash_map_header="<$location>";
                            ac_cv_cxx_hash_namespace="$namespace";
-                           ac_cv_cxx_hash_map_class="$name";])
+                           ac_cv_cxx_hash_map_class="$name";],[])
          fi
        done
      done
@@ -40,21 +39,22 @@ AC_DEFUN([AC_CXX_STL_HASH],
    ac_cv_cxx_hash_set_header=`echo "$ac_cv_cxx_hash_map_header" | sed s/map/set/`;
    ac_cv_cxx_hash_set_class=`echo "$ac_cv_cxx_hash_map_class" | sed s/map/set/`;
    if test -n "$ac_cv_cxx_hash_map_header"; then
-      AC_DEFINE(HAVE_HASH_MAP, 1, [define if the compiler has hash_map])
-      AC_DEFINE(HAVE_HASH_SET, 1, [define if the compiler has hash_set])
-      AC_DEFINE_UNQUOTED(HASH_MAP_H,$ac_cv_cxx_hash_map_header,
+      AC_DEFINE([HAVE_HASH_MAP], [1], [define if the compiler has hash_map])
+      AC_DEFINE([HAVE_HASH_SET], [1], [define if the compiler has hash_set])
+      AC_DEFINE_UNQUOTED([HASH_MAP_H],[$ac_cv_cxx_hash_map_header],
                          [the location of <hash_map>])
-      AC_DEFINE_UNQUOTED(HASH_SET_H,$ac_cv_cxx_hash_set_header,
+      AC_DEFINE_UNQUOTED([HASH_SET_H],[$ac_cv_cxx_hash_set_header],
                          [the location of <hash_set>])
-      AC_DEFINE_UNQUOTED(HASH_MAP_CLASS,$ac_cv_cxx_hash_map_class,
+      AC_DEFINE_UNQUOTED([HASH_MAP_CLASS],[$ac_cv_cxx_hash_map_class],
                          [the name of <hash_set>])
-      AC_DEFINE_UNQUOTED(HASH_SET_CLASS,$ac_cv_cxx_hash_set_class,
+      AC_DEFINE_UNQUOTED([HASH_SET_CLASS],[$ac_cv_cxx_hash_set_class],
                          [the name of <hash_set>])
-      AC_DEFINE_UNQUOTED(HASH_NAMESPACE,$ac_cv_cxx_hash_namespace,
+      AC_DEFINE_UNQUOTED([HASH_NAMESPACE],[$ac_cv_cxx_hash_namespace],
                          [the namespace of hash_map/hash_set])
       AC_MSG_RESULT([$ac_cv_cxx_hash_map_header])
    else
-      AC_MSG_RESULT()
+      AC_MSG_RESULT([])
       AC_MSG_WARN([could not find an STL hash_map])
    fi
+   AC_LANG_POP([C++])
 ])

@@ -45,11 +45,23 @@
 /* Define to 1 if you have the `gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 
+/* Define to 1 if you have the <GL/glut.h> header file. */
+#undef HAVE_GL_GLUT_H
+
+/* Define to 1 if you have the <GL/glu.h> header file. */
+#undef HAVE_GL_GLU_H
+
+/* Define to 1 if you have the <GL/gl.h> header file. */
+#undef HAVE_GL_GL_H
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
 /* Define to 1 if you have the `iswprint' function. */
 #undef HAVE_ISWPRINT
+
+/* Define to 1 if you have the `c' library (-lc). */
+#undef HAVE_LIBC
 
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
@@ -88,6 +100,15 @@
 /* Define to 1 if you have the <netinet/in.h> header file. */
 #undef HAVE_NETINET_IN_H
 
+/* Define to 1 if you have the <OpenGL/glut.h> header file. */
+#undef HAVE_OPENGL_GLUT_H
+
+/* Define to 1 if you have the <OpenGL/glu.h> header file. */
+#undef HAVE_OPENGL_GLU_H
+
+/* Define to 1 if you have the <OpenGL/gl.h> header file. */
+#undef HAVE_OPENGL_GL_H
+
 /* Define to 1 if you have the `pow' function. */
 #undef HAVE_POW
 
@@ -121,6 +142,9 @@
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdio.h> header file. */
+#undef HAVE_STDIO_H
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
@@ -161,6 +185,9 @@
 /* Define to 1 if you have the `strtoul' function. */
 #undef HAVE_STRTOUL
 
+/* Define to 1 if you have the `symlink' function. */
+#undef HAVE_SYMLINK
+
 /* Define to 1 if you have the <sys/mount.h> header file. */
 #undef HAVE_SYS_MOUNT_H
 
@@ -176,11 +203,20 @@
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #undef HAVE_SYS_STAT_H
 
+/* Define to 1 if you have the <sys/timeb.h> header file. */
+#undef HAVE_SYS_TIMEB_H
+
 /* Define to 1 if you have the <sys/time.h> header file. */
 #undef HAVE_SYS_TIME_H
 
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <timeb.h> header file. */
+#undef HAVE_TIMEB_H
+
+/* Define to 1 if you have the <time.h> header file. */
+#undef HAVE_TIME_H
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
@@ -188,11 +224,23 @@
 /* Define to 1 if you have the <utime.h> header file. */
 #undef HAVE_UTIME_H
 
+/* Use nonstandard varargs form for the GLU tesselator callback */
+#undef HAVE_VARARGS_GLU_TESSCB
+
 /* Define to 1 if you have the <wchar.h> header file. */
 #undef HAVE_WCHAR_H
 
 /* Define to 1 if you have the <wctype.h> header file. */
 #undef HAVE_WCTYPE_H
+
+/* Define to 1 if you have the <windows.h> header file. */
+#undef HAVE_WINDOWS_H
+
+/* Define to 1 if O_NOATIME works. */
+#undef HAVE_WORKING_O_NOATIME
+
+/* Define to 1 if O_NOFOLLOW works. */
+#undef HAVE_WORKING_O_NOFOLLOW
 
 /* Define to 1 if the system has the type `_Bool'. */
 #undef HAVE__BOOL
@@ -200,6 +248,9 @@
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
 #undef LSTAT_FOLLOWS_SLASHED_SYMLINK
+
+/* Name of package */
+#undef PACKAGE
 
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
@@ -233,8 +284,46 @@
 /* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
 #undef TIME_WITH_SYS_TIME
 
+/* Enable extensions on AIX 3, Interix.  */
+#ifndef _ALL_SOURCE
+# undef _ALL_SOURCE
+#endif
+/* Enable GNU extensions on systems that have them.  */
+#ifndef _GNU_SOURCE
+# undef _GNU_SOURCE
+#endif
+/* Enable threading extensions on Solaris.  */
+#ifndef _POSIX_PTHREAD_SEMANTICS
+# undef _POSIX_PTHREAD_SEMANTICS
+#endif
+/* Enable extensions on HP NonStop.  */
+#ifndef _TANDEM_SOURCE
+# undef _TANDEM_SOURCE
+#endif
+/* Enable general extensions on Solaris.  */
+#ifndef __EXTENSIONS__
+# undef __EXTENSIONS__
+#endif
+
+
+/* Version number of package */
+#undef VERSION
+
+/* Define to 1 if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING
+
 /* Define to 1 to make fseeko visible on some hosts (e.g. glibc 2.2). */
 #undef _LARGEFILE_SOURCE
+
+/* Define to 1 if on MINIX. */
+#undef _MINIX
+
+/* Define to 2 if the system does not provide POSIX.1 features except with
+   this defined. */
+#undef _POSIX_1_SOURCE
+
+/* Define to 1 if you need to in order for `stat' and other things to work. */
+#undef _POSIX_SOURCE
 
 /* Define for Solaris 2.5.1 so the uint32_t typedef from <sys/synch.h>,
    <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
@@ -288,6 +377,10 @@
 
 /* Define to `int' if <sys/types.h> doesn't define. */
 #undef uid_t
+
+/* Define to the type of an unsigned integer type of width exactly 16 bits if
+   such a type exists and the standard includes do not define it. */
+#undef uint16_t
 
 /* Define to the type of an unsigned integer type of width exactly 32 bits if
    such a type exists and the standard includes do not define it. */

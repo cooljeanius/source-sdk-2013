@@ -18237,8 +18237,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking the location of hash_map" >&5
 $as_echo_n "checking the location of hash_map... " >&6; }
-
-   ac_ext=cpp
+  ac_ext=cpp
 ac_cpp='$CXXCPP $CPPFLAGS'
 ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
@@ -18321,6 +18320,12 @@ $as_echo "" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: could not find an STL hash_map" >&5
 $as_echo "$as_me: WARNING: could not find an STL hash_map" >&2;}
    fi
+   ac_ext=cpp
+ac_cpp='$CXXCPP $CPPFLAGS'
+ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
+
 
 
 export CFLAGS
