@@ -10,7 +10,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 
 AC_CANONICAL_TARGET
 
-AM_INIT_AUTOMAKE([1.11 dist-zip foreign -Wall])
+AM_INIT_AUTOMAKE([1.10 dist-zip foreign -Wall])
 AM_MAINTAINER_MODE
 
 AC_OBJEXT

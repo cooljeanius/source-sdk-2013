@@ -10,6 +10,7 @@ examples/protoc_middleman
 examples/com/*
 *.dirstamp
 *.lo
+*.loT
 *.Tpo
 *.dylib
 *libs/*.la

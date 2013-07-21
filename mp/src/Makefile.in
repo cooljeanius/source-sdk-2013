@@ -81,8 +81,9 @@ target_triplet = @target@
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
-	$(srcdir)/config.h.in build-aux/ar-lib build-aux/compile \
-	build-aux/config.guess build-aux/config.sub \
+	$(srcdir)/config.h.in INSTALL build-aux/ar-lib \
+	build-aux/compile config.guess build-aux/config.guess \
+	config.sub build-aux/config.sub install-sh \
 	build-aux/install-sh build-aux/missing \
 	$(top_srcdir)/build-aux/ar-lib $(top_srcdir)/build-aux/compile \
 	$(top_srcdir)/build-aux/config.guess \
