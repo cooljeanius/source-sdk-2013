@@ -31,42 +31,42 @@ AC_DEFUN([gl_THREADLIB_EARLY],
   AC_REQUIRE([gl_THREADLIB_EARLY_BODY])
 ])
 
-dnl The guts of gl_THREADLIB_EARLY. Needs to be expanded only once.
+dnl# The guts of gl_THREADLIB_EARLY. Needs to be expanded only once.
 
 AC_DEFUN([gl_THREADLIB_EARLY_BODY],
 [
-  dnl Ordering constraints: This macro modifies CPPFLAGS in a way that
-  dnl influences the result of the autoconf tests that test for *_unlocked
-  dnl declarations, on AIX 5 at least. Therefore it must come early.
+  dnl# Ordering constraints: This macro modifies CPPFLAGS in a way that
+  dnl# influences the result of the autoconf tests that test for *_unlocked
+  dnl# declarations, on AIX 5 at least. Therefore it must come early.
   AC_BEFORE([$0], [gl_FUNC_GLIBC_UNLOCKED_IO])dnl
   AC_BEFORE([$0], [gl_ARGP])dnl
 
   AC_REQUIRE([AC_CANONICAL_HOST])
-  dnl _GNU_SOURCE is needed for pthread_rwlock_t on glibc systems.
-  dnl AC_USE_SYSTEM_EXTENSIONS was introduced in autoconf 2.60 and obsoletes
-  dnl AC_GNU_SOURCE.
+  dnl# _GNU_SOURCE is needed for pthread_rwlock_t on glibc systems.
+  dnl# AC_USE_SYSTEM_EXTENSIONS was introduced in autoconf 2.60 and obsoletes
+  dnl# AC_GNU_SOURCE.
   m4_ifdef([AC_USE_SYSTEM_EXTENSIONS],
     [AC_REQUIRE([AC_USE_SYSTEM_EXTENSIONS])],
     [AC_REQUIRE([AC_GNU_SOURCE])])
-  dnl Check for multithreading.
+  dnl# Check for multithreading.
   m4_ifdef([gl_THREADLIB_DEFAULT_NO],
     [m4_divert_text([DEFAULTS], [gl_use_threads_default=no])],
     [m4_divert_text([DEFAULTS], [gl_use_threads_default=])])
   AC_ARG_ENABLE([threads],
-AC_HELP_STRING([--enable-threads={posix|solaris|pth|windows}], [specify multithreading API])m4_ifdef([gl_THREADLIB_DEFAULT_NO], [], [
-AC_HELP_STRING([--disable-threads], [build without multithread safety])]),
+AS_HELP_STRING([--enable-threads={posix|solaris|pth|windows}], [specify multithreading API])m4_ifdef([gl_THREADLIB_DEFAULT_NO], [], [
+AS_HELP_STRING([--disable-threads], [build without multithread safety])]),
     [gl_use_threads=$enableval],
     [if test -n "$gl_use_threads_default"; then
        gl_use_threads="$gl_use_threads_default"
      else
 changequote(,)dnl
        case "$host_os" in
-         dnl Disable multithreading by default on OSF/1, because it interferes
-         dnl with fork()/exec(): When msgexec is linked with -lpthread, its
-         dnl child process gets an endless segmentation fault inside execvp().
-         dnl Disable multithreading by default on Cygwin 1.5.x, because it has
-         dnl bugs that lead to endless loops or crashes. See
-         dnl <http://cygwin.com/ml/cygwin/2009-08/msg00283.html>.
+         dnl# Disable multithreading by default on OSF/1, because it interferes
+         dnl# with fork()/exec(): When msgexec is linked with -lpthread, its
+         dnl# child process gets an endless segmentation fault inside execvp().
+         dnl# Disable multithreading by default on Cygwin 1.5.x, because it has
+         dnl# bugs that lead to endless loops or crashes. See
+         dnl# <http://cygwin.com/ml/cygwin/2009-08/msg00283.html>.
          osf*) gl_use_threads=no ;;
          cygwin*)
                case `uname -r` in
@@ -107,6 +107,8 @@ dnl The guts of gl_THREADLIB. Needs to be expanded only once.
 AC_DEFUN([gl_THREADLIB_BODY],
 [
   AC_REQUIRE([gl_THREADLIB_EARLY_BODY])
+  AC_REQUIRE([AC_PROG_CPP])
+  AC_REQUIRE([AC_PROG_EGREP])
   gl_threads_api=none
   LIBTHREAD=
   LTLIBTHREAD=
@@ -137,8 +139,8 @@ int main ()
 }]])],
            [gl_cv_have_weak=yes],
            [gl_cv_have_weak=no],
-           [dnl When cross-compiling, assume that only ELF platforms support
-            dnl weak symbols.
+           [dnl# When cross-compiling, assume that only ELF platforms support
+            dnl# weak symbols.
             AC_EGREP_CPP([Extensible Linking Format],
               [#ifdef __ELF__
                Extensible Linking Format

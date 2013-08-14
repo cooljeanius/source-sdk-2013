@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================//
@@ -238,7 +238,7 @@ bool FocusNavGroup::RequestFocusNext(VPANEL panel)
 				}
 			}
 		}
-		
+
 		// loop back
 		newPosition = 0;
 		bRepeat = false;
@@ -356,12 +356,12 @@ Panel *FocusNavGroup::FindPanelByHotkey(wchar_t key)
 			return hot;
 		}
 	}
-	
+
 	return NULL;
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 //-----------------------------------------------------------------------------
 Panel *FocusNavGroup::GetDefaultPanel()
 {
@@ -381,7 +381,7 @@ Panel *FocusNavGroup::GetDefaultPanel()
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 //-----------------------------------------------------------------------------
 Panel *FocusNavGroup::GetCurrentFocus()
 {

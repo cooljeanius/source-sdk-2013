@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //===========================================================================//
@@ -94,5 +94,8 @@ private:
 
 } // namespace vgui
 
+// missing prototypes
+vgui::Panel* Splitter_V_Factory();
+vgui::Panel* Splitter_H_Factory();
 
 #endif // SPLITTER_H

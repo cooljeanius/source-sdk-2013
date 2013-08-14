@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================//
@@ -109,7 +109,7 @@ public:
 				"ControlName" - class name of the control to create
 			returns:
 				"PanelPtr" - pointer to the newly created panel, or NULL if no such class exists
-	*/	
+	*/
 	// registers a file in the list of control settings, so the vgui dialog can choose between them to edit
 	virtual void RegisterControlSettingsFile(const char *dialogResourceName, const char *pathID = NULL);
 

@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose: header for inclusion by polyhedron.cpp
 //
 // $NoKeywords: $
 //
@@ -14,7 +14,7 @@
 #endif
 
 #include "mathlib/mathlib.h"
-
+#include <math.h>
 
 
 struct Polyhedron_IndexedLine_t
@@ -42,7 +42,7 @@ public:
 	Polyhedron_IndexedLine_t *pLines;
 	Polyhedron_IndexedLineReference_t *pIndices;
 	Polyhedron_IndexedPolygon_t *pPolygons;
-	
+
 	unsigned short iVertexCount;
 	unsigned short iLineCount;
 	unsigned short iIndexCount;
@@ -68,6 +68,16 @@ CPolyhedron *ClipPolyhedron( const CPolyhedron *pExistingPolyhedron, const float
 
 CPolyhedron *GetTempPolyhedron( unsigned short iVertices, unsigned short iLines, unsigned short iIndices, unsigned short iPolygons ); //grab the temporary polyhedron. Avoids new/delete for quick work. Can only be in use by one chunk of code at a time
 
+// Missing prototypes in polyhedron.cpp
+#ifdef DEBUG
+#ifdef ENABLE_DEBUG_POLYHEDRON_DUMPS
+void DumpPointListToGLView( GeneratePolyhedronFromPlanes_UnorderedPointLL *pHead, PolyhedronPointPlanarity planarity, const Vector &vColor, const char *szDumpFile, const VMatrix *pTransform );
+#endif //#ifdef ENABLE_DEBUG_POLYHEDRON_DUMPS
+
+#ifdef ENABLE_DEBUG_POLYHEDRON_DUMPS
+const char * DumpPolyhedronCutHistory( const CUtlVector<CPolyhedron *> &DumpedHistory, const CUtlVector<const float *> &CutHistory, const VMatrix *pTransform );
+#endif //#ifdef ENABLE_DEBUG_POLYHEDRON_DUMPS
+#endif //#ifdef DEBUG
 
 #endif //#ifndef POLYHEDRON_H_
 

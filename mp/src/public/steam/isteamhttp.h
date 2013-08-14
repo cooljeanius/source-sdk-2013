@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: interface to http client 
+// Purpose: interface to http client
 //
 //=============================================================================
 
@@ -26,7 +26,7 @@ public:
 
 	// Initializes a new HTTP request, returning a handle to use in further operations on it.  Requires
 	// the method (GET or POST) and the absolute URL for the request.  Only http requests (ie, not https) are
-	// currently supported, so this string must start with http:// or https:// and should look like http://store.steampowered.com/app/250/ 
+	// currently supported, so this string must start with http:// or https:// and should look like http://store.steampowered.com/app/250/
 	// or such.
 	virtual HTTPRequestHandle CreateHTTPRequest( EHTTPMethod eHTTPRequestMethod, const char *pchAbsoluteURL ) = 0;
 
@@ -39,24 +39,24 @@ public:
 	// has already been sent.
 	virtual bool SetHTTPRequestNetworkActivityTimeout( HTTPRequestHandle hRequest, uint32 unTimeoutSeconds ) = 0;
 
-	// Set a request header value for the request, must be called prior to sending the request.  Will 
+	// Set a request header value for the request, must be called prior to sending the request.  Will
 	// return false if the handle is invalid or the request is already sent.
 	virtual bool SetHTTPRequestHeaderValue( HTTPRequestHandle hRequest, const char *pchHeaderName, const char *pchHeaderValue ) = 0;
 
 	// Set a GET or POST parameter value on the request, which is set will depend on the EHTTPMethod specified
-	// when creating the request.  Must be called prior to sending the request.  Will return false if the 
+	// when creating the request.  Must be called prior to sending the request.  Will return false if the
 	// handle is invalid or the request is already sent.
 	virtual bool SetHTTPRequestGetOrPostParameter( HTTPRequestHandle hRequest, const char *pchParamName, const char *pchParamValue ) = 0;
 
 	// Sends the HTTP request, will return false on a bad handle, otherwise use SteamCallHandle to wait on
 	// asynchronous response via callback.
 	//
-	// Note: If the user is in offline mode in Steam, then this will add a only-if-cached cache-control 
+	// Note: If the user is in offline mode in Steam, then this will add a only-if-cached cache-control
 	// header and only do a local cache lookup rather than sending any actual remote request.
 	virtual bool SendHTTPRequest( HTTPRequestHandle hRequest, SteamAPICall_t *pCallHandle ) = 0;
 
 	// Sends the HTTP request, will return false on a bad handle, otherwise use SteamCallHandle to wait on
-	// asynchronous response via callback for completion, and listen for HTTPRequestHeadersReceived_t and 
+	// asynchronous response via callback for completion, and listen for HTTPRequestHeadersReceived_t and
 	// HTTPRequestDataReceived_t callbacks while streaming.
 	virtual bool SendHTTPRequestAndStreamResponse( HTTPRequestHandle hRequest, SteamAPICall_t *pCallHandle ) = 0;
 
@@ -68,27 +68,27 @@ public:
 	// the specified request to the head of the queue.  Returns false on invalid handle, or if the request is not yet sent.
 	virtual bool PrioritizeHTTPRequest( HTTPRequestHandle hRequest ) = 0;
 
-	// Checks if a response header is present in a HTTP response given a handle from HTTPRequestCompleted_t, also 
+	// Checks if a response header is present in a HTTP response given a handle from HTTPRequestCompleted_t, also
 	// returns the size of the header value if present so the caller and allocate a correctly sized buffer for
 	// GetHTTPResponseHeaderValue.
 	virtual bool GetHTTPResponseHeaderSize( HTTPRequestHandle hRequest, const char *pchHeaderName, uint32 *unResponseHeaderSize ) = 0;
 
 	// Gets header values from a HTTP response given a handle from HTTPRequestCompleted_t, will return false if the
-	// header is not present or if your buffer is too small to contain it's value.  You should first call 
+	// header is not present or if your buffer is too small to contain it's value.  You should first call
 	// BGetHTTPResponseHeaderSize to check for the presence of the header and to find out the size buffer needed.
 	virtual bool GetHTTPResponseHeaderValue( HTTPRequestHandle hRequest, const char *pchHeaderName, uint8 *pHeaderValueBuffer, uint32 unBufferSize ) = 0;
 
-	// Gets the size of the body data from a HTTP response given a handle from HTTPRequestCompleted_t, will return false if the 
+	// Gets the size of the body data from a HTTP response given a handle from HTTPRequestCompleted_t, will return false if the
 	// handle is invalid.
 	virtual bool GetHTTPResponseBodySize( HTTPRequestHandle hRequest, uint32 *unBodySize ) = 0;
 
-	// Gets the body data from a HTTP response given a handle from HTTPRequestCompleted_t, will return false if the 
+	// Gets the body data from a HTTP response given a handle from HTTPRequestCompleted_t, will return false if the
 	// handle is invalid or is to a streaming response, or if the provided buffer is not the correct size.  Use BGetHTTPResponseBodySize first to find out
 	// the correct buffer size to use.
 	virtual bool GetHTTPResponseBodyData( HTTPRequestHandle hRequest, uint8 *pBodyDataBuffer, uint32 unBufferSize ) = 0;
 
-	// Gets the body data from a streaming HTTP response given a handle from HTTPRequestDataReceived_t. Will return false if the 
-	// handle is invalid or is to a non-streaming response (meaning it wasn't sent with SendHTTPRequestAndStreamResponse), or if the buffer size and offset 
+	// Gets the body data from a streaming HTTP response given a handle from HTTPRequestDataReceived_t. Will return false if the
+	// handle is invalid or is to a non-streaming response (meaning it wasn't sent with SendHTTPRequestAndStreamResponse), or if the buffer size and offset
 	// do not match the size and offset sent in HTTPRequestDataReceived_t.
 	virtual bool GetHTTPStreamingResponseBodyData( HTTPRequestHandle hRequest, uint32 cOffset, uint8 *pBodyDataBuffer, uint32 unBufferSize ) = 0;
 
@@ -116,7 +116,7 @@ public:
 #pragma pack( push, 8 )
 #else
 #error isteamclient.h must be included
-#endif 
+#endif
 
 struct HTTPRequestCompleted_t
 {
@@ -129,7 +129,7 @@ struct HTTPRequestCompleted_t
 	// no context value was set.
 	uint64 m_ulContextValue;
 
-	// This will be true if we actually got any sort of response from the server (even an error).  
+	// This will be true if we actually got any sort of response from the server (even an error).
 	// It will be false if we failed due to an internal error or client side network failure.
 	bool m_bRequestSuccessful;
 

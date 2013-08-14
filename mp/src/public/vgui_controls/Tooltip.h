@@ -73,4 +73,8 @@ public:
 
 };
 
+// missing prototypes
+const char* GetText();
+void SetText(const char *text);
+
 #endif // TOOLTIP_H

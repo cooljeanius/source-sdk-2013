@@ -1,10 +1,12 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: linux dependant ASM code for CPU capability detection
+// Purpose: Linux-dependent ASM code for CPU capability detection
 //
 // $Workfile:     $
 // $NoKeywords: $
 //=============================================================================//
+
+#include "processor_detect.h"
 
 #define cpuid(in,a,b,c,d)												\
 	asm("pushl %%ebx\n\t" "cpuid\n\t" "movl %%ebx,%%esi\n\t" "pop %%ebx": "=a" (a), "=S" (b), "=c" (c), "=d" (d) : "a" (in));

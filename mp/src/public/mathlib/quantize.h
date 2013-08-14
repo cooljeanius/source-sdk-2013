@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //
@@ -135,7 +135,12 @@ uint8		*pOutPalette,		// where to store resulting 768-byte palette
 int			nFirstColor);		// first color to use in mapping
 
 
-
-
+// Missing prototypes
+void CheckInRange(struct QuantizedValue *q, uint8 *max, uint8 *min);
+void InitHeap(struct FHeap *h);
+void UpHeap(int k, struct FHeap *h);
+void HeapInsert(struct FHeap *h,double *elem);
+void DownHeap(int k, struct FHeap *h);
+void *RemoveHeapItem(struct FHeap *h);
 
 #endif

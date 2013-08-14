@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: represent a canonical list of the languages we support, 
+// Purpose: represent a canonical list of the languages we support,
 //
 //=============================================================================
 
@@ -51,5 +51,9 @@ const char *GetLanguageShortName( ELanguage eLang );
 const char *GetLanguageICUName( ELanguage eLang );
 const char *GetLanguageVGUILocalization( ELanguage eLang );
 const char *GetLanguageName( ELanguage eLang );
+
+// missing prototypes
+int GetLanguageCodeID(ELanguage eLang);
+const char *GetLangugeCLocaleName( ELanguage eLang );
 
 #endif /* LANG_H */

@@ -40,7 +40,7 @@ public:
 	int GetTimerState( void ){ return m_nState; }
 
 	bool IsTimerPaused( void ) { return m_bTimerPaused; }
-	
+
 #ifdef CLIENT_DLL
 
 	void InternalSetPaused( bool bPaused ) { m_bTimerPaused = bPaused; }
@@ -80,7 +80,7 @@ public:
 	bool IsStopWatchTimer( void ) { return m_bStopWatchTimer; }
 	float GetStopWatchTotalTime( void ) { return m_flTotalTime; }
 	bool IsRoundMaxTimerSet( void ) { return m_nTimerMaxLength > 0; }
-	
+
 
 private:
 	void CalculateOutputMessages( void );
@@ -104,7 +104,7 @@ private:
 private:
 	CNetworkVar( bool, m_bTimerPaused );
 	CNetworkVar( float, m_flTimeRemaining );
-	CNetworkVar( float, m_flTimerEndTime );	
+	CNetworkVar( float, m_flTimerEndTime );
 	CNetworkVar( bool, m_bIsDisabled );
 	CNetworkVar( bool, m_bShowInHUD );
 	CNetworkVar( int, m_nTimerLength );			// current timer's length (used in the timer panel if no max length is set)
@@ -133,7 +133,7 @@ private:
 	bool			m_bFire2SecRemain;
 	bool			m_bFire1SecRemain;
 
-#ifdef CLIENT_DLL 
+#ifdef CLIENT_DLL
 
 	int				m_nOldTimerLength;
 	int				m_nOldTimerState;
@@ -164,7 +164,7 @@ private:
 	bool			m_bPauseDueToWin;
 	bool			m_bResetTimeOnRoundStart;
 	int				m_nTimeToUseAfterSetupFinished;
-#endif 
+#endif
 };
 
 #ifdef CLIENT_DLL

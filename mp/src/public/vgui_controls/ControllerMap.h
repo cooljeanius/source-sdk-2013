@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================//
@@ -44,5 +44,9 @@ private:
 	};
 	CUtlMap< int, button_t > m_buttonMap;
 };
+
+// missing prototypes
+bool lessFunc( const int &lhs, const int &rhs );
+int StringToButtonCode( const char *name );
 
 #endif // CONTROLLERMAP_H

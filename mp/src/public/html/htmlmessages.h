@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //=============================================================================//
 
 #ifndef HTMLMESSAGES_H
@@ -22,7 +22,7 @@ enum EHTMLCommands
 	eHTMLCommands_MouseDown,
 	eHTMLCommands_MouseUp,
 	eHTMLCommands_MouseDblClick,
-	eHTMLCommands_MouseWheel,	
+	eHTMLCommands_MouseWheel,
 	eHTMLCommands_MouseMove,
 	eHTMLCommands_MouseLeave,
 

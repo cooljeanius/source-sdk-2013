@@ -29,3 +29,10 @@ java/target/surefire-reports/*
 *.pyc
 *.egg-info
 python/build/*
+src/*libs/*test
+src/*libs/test*
+src/*libs/zcg*zip
+*.trs
+src/*test
+src/test*
+src/zcg*zip

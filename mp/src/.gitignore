@@ -1,0 +1,3 @@
+*.build
+build/Debug/*
+lib/osx32/*.a

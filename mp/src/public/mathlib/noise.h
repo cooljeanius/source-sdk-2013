@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 //=====================================================================================//
 
@@ -32,4 +32,9 @@ float FractalNoise( Vector const &pnt, int n_octaves );
 
 // returns a abs(f)*1/f noise i.e. turbulence
 float Turbulence( Vector const &pnt, int n_octaves );
+
+// Missing prototypes
+float NoiseGradient(int hash, float x, float y, float z);
+int NoiseHashIndex( int i );
+
 #endif // NOISE_H

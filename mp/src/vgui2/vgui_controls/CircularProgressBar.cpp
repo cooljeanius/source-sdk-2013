@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================//
@@ -62,7 +62,7 @@ CircularProgressBar::~CircularProgressBar()
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 //-----------------------------------------------------------------------------
 void CircularProgressBar::ApplySettings(KeyValues *inResourceData)
 {
@@ -88,7 +88,7 @@ void CircularProgressBar::ApplySettings(KeyValues *inResourceData)
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 //-----------------------------------------------------------------------------
 void CircularProgressBar::ApplySchemeSettings(IScheme *pScheme)
 {
@@ -120,7 +120,7 @@ void CircularProgressBar::SetImage(const char *imageName, progress_textures_t iP
 	const char *pszDir = "vgui/";
 	int len = Q_strlen(imageName) + 1;
 	len += strlen(pszDir);
-	
+
 	if ( m_pszImageName[iPos] && ( m_lenImageName[iPos] < len ) )
 	{
 		// If we already have a buffer, but it is too short, then free the buffer
@@ -140,7 +140,7 @@ void CircularProgressBar::SetImage(const char *imageName, progress_textures_t iP
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 //-----------------------------------------------------------------------------
 void CircularProgressBar::PaintBackground()
 {
@@ -156,7 +156,7 @@ void CircularProgressBar::PaintBackground()
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 //-----------------------------------------------------------------------------
 void CircularProgressBar::Paint()
 {
@@ -192,7 +192,7 @@ namespace vgui
 {
 // This defines the properties of the 8 circle segments
 // in the circular progress bar.
-circular_progress_segment_t Segments[8] = 
+circular_progress_segment_t Segments[8] =
 {
 	{ 0.0,			0.5, 0.0, 1.0, 0.0, 1, 0 },
 	{ M_PI * 0.25,	1.0, 0.0, 1.0, 0.5, 0, 1 },
@@ -254,7 +254,7 @@ void CircularProgressBar::DrawCircleSegment( Color c, float flEndProgress, bool 
 				}
 
 				float flTan = tan(flInternalProgress);
-	
+
 				float flDeltaX, flDeltaY;
 
 				if ( i % 2 == 1 )

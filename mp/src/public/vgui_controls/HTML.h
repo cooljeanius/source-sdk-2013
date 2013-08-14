@@ -77,7 +77,7 @@ public:
 
 	// overridden to paint our special web browser texture
 	virtual void Paint();
-	
+
 	// pass messages to the texture component to tell it about resizes
 	virtual void OnSizeChanged(int wide,int tall);
 
@@ -121,7 +121,7 @@ public:
 	void AddHeader( const char *pchHeader, const char *pchValue );
 	void OnKillFocus();
 	void OnSetFocus();
-	
+
 	void Find( const char *pchSubStr );
 	void StopFind();
 	void FindNext();
@@ -263,7 +263,7 @@ private:
 	int m_allocedTextureWidth;
 	int m_allocedTextureHeight;
 	int m_iComboBoxTextureID; // vgui texture id of the combo box
-	bool m_bNeedsFullTextureUpload; 
+	bool m_bNeedsFullTextureUpload;
 	int m_allocedComboBoxWidth;
 	int m_allocedComboBoxHeight;
 	CUtlString m_sCurrentURL; // the url of our current page
@@ -287,7 +287,7 @@ private:
 
 	struct ScrollData_t
 	{
-		ScrollData_t() 
+		ScrollData_t()
 		{
 			m_bVisible = false;
 			m_nX = m_nY = m_nWide = m_nTall = m_nMax = m_nScroll = 0;
@@ -295,7 +295,7 @@ private:
 
 		bool operator==( ScrollData_t const &src ) const
 		{
-			return m_bVisible == src.m_bVisible && 
+			return m_bVisible == src.m_bVisible &&
 				m_nX == src.m_nX &&
 				m_nY == src.m_nY &&
 				m_nWide == src.m_nWide &&
@@ -305,7 +305,7 @@ private:
 		}
 
 		bool operator!=( ScrollData_t const &src ) const
-		{	
+		{
 			return !operator==(src);
 		}
 
@@ -336,7 +336,7 @@ private:
 		const void *m_pchData; // the pointer to the cursor char data so we can detect the same cursor being used
 		bool operator==(const CustomCursorCache_t& rhs) const
 		{
-			return m_pchData == rhs.m_pchData ; 
+			return m_pchData == rhs.m_pchData ;
 		}
 	};
 	CUtlVector<CustomCursorCache_t> m_vecHCursor;
@@ -344,5 +344,9 @@ private:
 };
 
 } // namespace vgui
+
+// missing prototypes
+int GetKeyModifiers();
+int ConvertMouseCodeToCEFCode(vgui::MouseCode);
 
 #endif // HTML_H

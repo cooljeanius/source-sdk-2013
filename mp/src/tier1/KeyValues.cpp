@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //
@@ -203,19 +203,19 @@ static CLeakTrack track;
 
 #else
 
-#define TRACK_KV_ADD( ptr, name ) 
-#define TRACK_KV_REMOVE( ptr )	
+#define TRACK_KV_ADD( ptr, name )
+#define TRACK_KV_REMOVE( ptr )
 
 #endif
 
 
 //-----------------------------------------------------------------------------
-// Purpose: An arbitrarily growable string table for KeyValues key names. 
+// Purpose: An arbitrarily growable string table for KeyValues key names.
 //	See the comment in the header for more info.
 //-----------------------------------------------------------------------------
 class CKeyValuesGrowableStringTable
 {
-public: 
+public:
 	// Constructor
 	CKeyValuesGrowableStringTable() :
 		#ifdef PLATFORM_64BITS
@@ -266,7 +266,7 @@ public:
 	}
 
 private:
-	
+
 	// A class plugged into CUtlHash that allows us to change the behavior of the table
 	// and store only the index in the table.
 	class CLookupFunctor
@@ -283,7 +283,7 @@ private:
 		{
 			const char *pchLhs = nLhs > 0 ? m_pchCurBase + nLhs : m_pchCurString;
 			const char *pchRhs = nRhs > 0 ? m_pchCurBase + nRhs : m_pchCurString;
-			
+
 			return ( 0 == V_stricmp( pchLhs, pchRhs ) );
 		}
 
@@ -445,7 +445,7 @@ void KeyValues::Init()
 	m_sValue = NULL;
 	m_wsValue = NULL;
 	m_pValue = NULL;
-	
+
 	m_bHasEscapeSequences = false;
 	m_bEvaluateConditionals = true;
 
@@ -491,8 +491,8 @@ void KeyValues::RemoveEverything()
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
-// Input  : *f - 
+// Purpose:
+// Input  : *f -
 //-----------------------------------------------------------------------------
 
 void KeyValues::RecursiveSaveToFile( CUtlBuffer& buf, int indentLevel, bool sortKeys /*= false*/, bool bAllowEmptyString /*= false*/ )
@@ -528,7 +528,7 @@ const char *KeyValues::ReadToken( CUtlBuffer &buf, bool &wasQuoted, bool &wasCon
 	wasConditional = false;
 
 	if ( !buf.IsValid() )
-		return NULL; 
+		return NULL;
 
 	// eating white spaces and remarks loop
 	while ( true )
@@ -550,7 +550,7 @@ const char *KeyValues::ReadToken( CUtlBuffer &buf, bool &wasQuoted, bool &wasCon
 	if ( *c == '\"' )
 	{
 		wasQuoted = true;
-		buf.GetDelimitedString( m_bHasEscapeSequences ? GetCStringCharConversion() : GetNoEscCharConversion(), 
+		buf.GetDelimitedString( m_bHasEscapeSequences ? GetCStringCharConversion() : GetNoEscCharConversion(),
 			s_pTokenBuf, KEYVALUES_TOKEN_SIZE );
 		return s_pTokenBuf;
 	}
@@ -607,7 +607,7 @@ const char *KeyValues::ReadToken( CUtlBuffer &buf, bool &wasQuoted, bool &wasCon
 }
 #pragma warning (default:4706)
 
-	
+
 
 //-----------------------------------------------------------------------------
 // Purpose: if parser should translate escape sequences ( /n, /t etc), set to true
@@ -648,7 +648,7 @@ bool KeyValues::LoadFromFile( IBaseFileSystem *filesystem, const char *resourceN
 
 	char *buffer = (char*)((IFileSystem *)filesystem)->AllocOptimalReadBuffer( f, bufSize );
 	Assert( buffer );
-	
+
 	// read into local buffer
 	bool bRetOK = ( ((IFileSystem *)filesystem)->ReadEx( buffer, bufSize, fileSize, f ) != 0 );
 
@@ -668,7 +668,7 @@ bool KeyValues::LoadFromFile( IBaseFileSystem *filesystem, const char *resourceN
 
 //-----------------------------------------------------------------------------
 // Purpose: Save the keyvalues to disk
-//			Creates the path to the file if it doesn't exist 
+//			Creates the path to the file if it doesn't exist
 //-----------------------------------------------------------------------------
 bool KeyValues::SaveToFile( IBaseFileSystem *filesystem, const char *resourceName, const char *pathID, bool sortKeys /*= false*/, bool bAllowEmptyString /*= false*/ )
 {
@@ -677,7 +677,7 @@ bool KeyValues::SaveToFile( IBaseFileSystem *filesystem, const char *resourceNam
 
 	if ( f == FILESYSTEM_INVALID_HANDLE )
 	{
-		DevMsg(1, "KeyValues::SaveToFile: couldn't open file \"%s\" in path \"%s\".\n", 
+		DevMsg(1, "KeyValues::SaveToFile: couldn't open file \"%s\" in path \"%s\".\n",
 			resourceName?resourceName:"NULL", pathID?pathID:"NULL" );
 		return false;
 	}
@@ -723,7 +723,7 @@ void KeyValues::WriteConvertedString( IBaseFileSystem *filesystem, FileHandle_t 
 		}
 		convertedString[j] = pszString[i];
 		j++;
-	}		
+	}
 
 	INTERNALWRITE(convertedString, strlen(convertedString));
 }
@@ -751,7 +751,7 @@ void KeyValues::RecursiveSaveToFile( IBaseFileSystem *filesystem, FileHandle_t f
 	// write header
 	WriteIndents( filesystem, f, pBuf, indentLevel );
 	INTERNALWRITE("\"", 1);
-	WriteConvertedString(filesystem, f, pBuf, GetName());	
+	WriteConvertedString(filesystem, f, pBuf, GetName());
 	INTERNALWRITE("\"\n", 2);
 	WriteIndents( filesystem, f, pBuf, indentLevel );
 	INTERNALWRITE("{\n", 2);
@@ -766,7 +766,7 @@ void KeyValues::RecursiveSaveToFile( IBaseFileSystem *filesystem, FileHandle_t f
 			vecSortedKeys.InsertNoSort(dat);
 		}
 		vecSortedKeys.RedoSort();
-		
+
 		FOR_EACH_VEC( vecSortedKeys, i )
 		{
 			SaveKeyToFile( vecSortedKeys[i], filesystem, f, pBuf, indentLevel, sortKeys, bAllowEmptyString );
@@ -801,10 +801,10 @@ void KeyValues::SaveKeyToFile( KeyValues *dat, IBaseFileSystem *filesystem, File
 				{
 					WriteIndents(filesystem, f, pBuf, indentLevel + 1);
 					INTERNALWRITE("\"", 1);
-					WriteConvertedString(filesystem, f, pBuf, dat->GetName());	
+					WriteConvertedString(filesystem, f, pBuf, dat->GetName());
 					INTERNALWRITE("\"\t\t\"", 4);
 
-					WriteConvertedString(filesystem, f, pBuf, dat->m_sValue);	
+					WriteConvertedString(filesystem, f, pBuf, dat->m_sValue);
 
 					INTERNALWRITE("\"\n", 2);
 				}
@@ -907,7 +907,7 @@ KeyValues *KeyValues::FindKey(int keySymbol) const
 
 //-----------------------------------------------------------------------------
 // Purpose: Find a keyValue, create it if it is not found.
-//			Set bCreate to true to create the key if it doesn't already exist 
+//			Set bCreate to true to create the key if it doesn't already exist
 //			(which ensures a valid pointer will be returned)
 //-----------------------------------------------------------------------------
 KeyValues *KeyValues::FindKey(const char *keyName, bool bCreate)
@@ -990,7 +990,7 @@ KeyValues *KeyValues::FindKey(const char *keyName, bool bCreate)
 			return NULL;
 		}
 	}
-	
+
 	// if we've still got a subStr we need to keep looking deeper in the tree
 	if ( subStr )
 	{
@@ -1002,8 +1002,8 @@ KeyValues *KeyValues::FindKey(const char *keyName, bool bCreate)
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Create a new key, with an autogenerated name.  
-//			Name is guaranteed to be an integer, of value 1 higher than the highest 
+// Purpose: Create a new key, with an autogenerated name.
+//			Name is guaranteed to be an integer, of value 1 higher than the highest
 //			other integer key name
 //-----------------------------------------------------------------------------
 KeyValues *KeyValues::CreateNewKey()
@@ -1048,7 +1048,7 @@ KeyValues* KeyValues::CreateKeyUsingKnownLastChild( const char *keyName, KeyValu
 
 	dat->UsesEscapeSequences( m_bHasEscapeSequences != 0 ); // use same format as parent does
 	dat->UsesConditionals( m_bEvaluateConditionals != 0 );
-	
+
 	// add into subkey list
 	AddSubkeyUsingKnownLastChild( dat, pLastChild );
 
@@ -1115,7 +1115,7 @@ void KeyValues::AddSubKey( KeyValues *pSubkey )
 }
 
 
-	
+
 //-----------------------------------------------------------------------------
 // Purpose: Remove a subkey from the list
 //-----------------------------------------------------------------------------
@@ -1140,7 +1140,7 @@ void KeyValues::RemoveSubKey(KeyValues *subKey)
 				kv->m_pPeer = subKey->m_pPeer;
 				break;
 			}
-			
+
 			kv = kv->m_pPeer;
 		}
 	}
@@ -1379,7 +1379,7 @@ const char *KeyValues::GetString( const char *keyName, const char *defaultValue 
 		default:
 			return defaultValue;
 		};
-		
+
 		return dat->m_sValue;
 	}
 	return defaultValue;
@@ -1432,7 +1432,7 @@ const wchar_t *KeyValues::GetWString( const char *keyName, const wchar_t *defaul
 		default:
 			return defaultValue;
 		};
-		
+
 		return (const wchar_t* )dat->m_wsValue;
 	}
 	return defaultValue;
@@ -1527,7 +1527,7 @@ void KeyValues::SetStringValue( char const *strValue )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Set the string value of a keyName. 
+// Purpose: Set the string value of a keyName.
 //-----------------------------------------------------------------------------
 void KeyValues::SetString( const char *keyName, const char *value )
 {
@@ -1562,7 +1562,7 @@ void KeyValues::SetString( const char *keyName, const char *value )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Set the string value of a keyName. 
+// Purpose: Set the string value of a keyName.
 //-----------------------------------------------------------------------------
 void KeyValues::SetWString( const char *keyName, const wchar_t *value )
 {
@@ -1591,7 +1591,7 @@ void KeyValues::SetWString( const char *keyName, const wchar_t *value )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Set the integer value of a keyName. 
+// Purpose: Set the integer value of a keyName.
 //-----------------------------------------------------------------------------
 void KeyValues::SetInt( const char *keyName, int value )
 {
@@ -1605,7 +1605,7 @@ void KeyValues::SetInt( const char *keyName, int value )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Set the integer value of a keyName. 
+// Purpose: Set the integer value of a keyName.
 //-----------------------------------------------------------------------------
 void KeyValues::SetUint64( const char *keyName, uint64 value )
 {
@@ -1626,7 +1626,7 @@ void KeyValues::SetUint64( const char *keyName, uint64 value )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Set the float value of a keyName. 
+// Purpose: Set the float value of a keyName.
 //-----------------------------------------------------------------------------
 void KeyValues::SetFloat( const char *keyName, float value )
 {
@@ -1645,7 +1645,7 @@ void KeyValues::SetName( const char * setName )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Set the pointer value of a keyName. 
+// Purpose: Set the pointer value of a keyName.
 //-----------------------------------------------------------------------------
 void KeyValues::SetPtr( const char *keyName, void *value )
 {
@@ -1661,7 +1661,7 @@ void KeyValues::SetPtr( const char *keyName, void *value )
 void KeyValues::RecursiveCopyKeyValues( KeyValues& src )
 {
 	// garymcthack - need to check this code for possible buffer overruns.
-	
+
 	m_iKeyName = src.GetNameSymbol();
 
 	if( !src.m_pSub )
@@ -1717,7 +1717,7 @@ void KeyValues::RecursiveCopyKeyValues( KeyValues& src )
 				m_Color[3] = src.m_Color[3];
 			}
 			break;
-			
+
 		default:
 			{
 				// do nothing . .what the heck is this?
@@ -1741,7 +1741,7 @@ void KeyValues::RecursiveCopyKeyValues( KeyValues& src )
 			// copy non-empty keys
 			if ( pSrc->m_sValue && *(pSrc->m_sValue) )
 			{
-				pDst->m_pPeer = new KeyValues( 
+				pDst->m_pPeer = new KeyValues(
 			}
 		}
 	}
@@ -1783,7 +1783,7 @@ void KeyValues::CopySubkeys( KeyValues *pParent ) const
 	{
 		// take a copy of the subkey
 		KeyValues *dat = sub->MakeCopy();
-		 
+
 		// add into subkey list
 		if (pPrev)
 		{
@@ -1846,7 +1846,7 @@ KeyValues *KeyValues::MakeCopy( void ) const
 	case TYPE_PTR:
 		newKeyValue->m_pValue = m_pValue;
 		break;
-		
+
 	case TYPE_COLOR:
 		newKeyValue->m_Color[0] = m_Color[0];
 		newKeyValue->m_Color[1] = m_Color[1];
@@ -1912,8 +1912,8 @@ void KeyValues::deleteThis()
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
-// Input  : includedKeys - 
+// Purpose:
+// Input  : includedKeys -
 //-----------------------------------------------------------------------------
 void KeyValues::AppendIncludedKeys( CUtlVector< KeyValues * >& includedKeys )
 {
@@ -1934,13 +1934,13 @@ void KeyValues::AppendIncludedKeys( CUtlVector< KeyValues * >& includedKeys )
 	}
 }
 
-void KeyValues::ParseIncludedKeys( char const *resourceName, const char *filetoinclude, 
+void KeyValues::ParseIncludedKeys( char const *resourceName, const char *filetoinclude,
 		IBaseFileSystem* pFileSystem, const char *pPathID, CUtlVector< KeyValues * >& includedKeys )
 {
 	Assert( resourceName );
 	Assert( filetoinclude );
 	Assert( pFileSystem );
-	
+
 	// Load it...
 	if ( !pFileSystem )
 	{
@@ -1960,8 +1960,8 @@ void KeyValues::ParseIncludedKeys( char const *resourceName, const char *filetoi
 		{
 			break;
 		}
-		
-		if ( fullpath[ len - 1 ] == '\\' || 
+
+		if ( fullpath[ len - 1 ] == '\\' ||
 			 fullpath[ len - 1 ] == '/' )
 		{
 			break;
@@ -1996,8 +1996,8 @@ void KeyValues::ParseIncludedKeys( char const *resourceName, const char *filetoi
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
-// Input  : baseKeys - 
+// Purpose:
+// Input  : baseKeys -
 //-----------------------------------------------------------------------------
 void KeyValues::MergeBaseKeys( CUtlVector< KeyValues * >& baseKeys )
 {
@@ -2013,7 +2013,7 @@ void KeyValues::MergeBaseKeys( CUtlVector< KeyValues * >& baseKeys )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 // Input  : baseKV - keyvalues we're basing ourselves on
 //-----------------------------------------------------------------------------
 void KeyValues::RecursiveMergeKeyValues( KeyValues *baseKV )
@@ -2036,7 +2036,7 @@ void KeyValues::RecursiveMergeKeyValues( KeyValues *baseKV )
 				newChild->RecursiveMergeKeyValues( baseChild );
 				bFoundMatch = true;
 				break;
-			}	
+			}
 		}
 
 		// If not merged, append this key
@@ -2067,22 +2067,22 @@ bool EvaluateConditional( const char *str )
 
 	if ( Q_stristr( str, "$X360" ) )
 		return IsX360() ^ bNot;
-	
+
 	if ( Q_stristr( str, "$WIN32" ) )
 		return IsPC() ^ bNot; // hack hack - for now WIN32 really means IsPC
 
 	if ( Q_stristr( str, "$WINDOWS" ) )
 		return IsWindows() ^ bNot;
-	
+
 	if ( Q_stristr( str, "$OSX" ) )
 		return IsOSX() ^ bNot;
-	
+
 	if ( Q_stristr( str, "$LINUX" ) )
 		return IsLinux() ^ bNot;
 
 	if ( Q_stristr( str, "$POSIX" ) )
 		return IsPosix() ^ bNot;
-	
+
 	return false;
 }
 
@@ -2098,8 +2098,8 @@ bool KeyValues::LoadFromBuffer( char const *resourceName, CUtlBuffer &buf, IBase
 	CUtlVector< KeyValues * > baseKeys;
 	bool wasQuoted;
 	bool wasConditional;
-	g_KeyValuesErrorStack.SetFilename( resourceName );	
-	do 
+	g_KeyValuesErrorStack.SetFilename( resourceName );
+	do
 	{
 		bool bAccepted = true;
 
@@ -2217,7 +2217,7 @@ bool KeyValues::LoadFromBuffer( char const *resourceName, CUtlBuffer &buf, IBase
 		}
 	}
 
-	g_KeyValuesErrorStack.SetFilename( "" );	
+	g_KeyValuesErrorStack.SetFilename( "" );
 
 	return true;
 }
@@ -2247,7 +2247,7 @@ bool KeyValues::LoadFromBuffer( char const *resourceName, const char *pBuffer, I
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose:
 //-----------------------------------------------------------------------------
 void KeyValues::RecursiveLoadFromBuffer( char const *resourceName, CUtlBuffer &buf )
 {
@@ -2307,7 +2307,7 @@ void KeyValues::RecursiveLoadFromBuffer( char const *resourceName, CUtlBuffer &b
 			g_KeyValuesErrorStack.ReportError("RecursiveLoadFromBuffer:  got NULL key" );
 			break;
 		}
-		
+
 		if ( *value == '}' && !wasQuoted )
 		{
 			g_KeyValuesErrorStack.ReportError("RecursiveLoadFromBuffer:  got } in key" );
@@ -2321,14 +2321,14 @@ void KeyValues::RecursiveLoadFromBuffer( char const *resourceName, CUtlBuffer &b
 			// sub value list
 			dat->RecursiveLoadFromBuffer( resourceName, buf );
 		}
-		else 
+		else
 		{
 			if ( wasConditional )
 			{
 				g_KeyValuesErrorStack.ReportError("RecursiveLoadFromBuffer:  got conditional between key and value" );
 				break;
 			}
-			
+
 			if (dat->m_sValue)
 			{
 				delete[] dat->m_sValue;
@@ -2354,10 +2354,10 @@ void KeyValues::RecursiveLoadFromBuffer( char const *resourceName, CUtlBuffer &b
 				pFEnd = (char *)value;
 			}
 #endif
-				
+
 			if ( *value == 0 )
 			{
-				dat->m_iDataType = TYPE_STRING;	
+				dat->m_iDataType = TYPE_STRING;
 			}
 			else if ( ( 18 == len ) && ( value[0] == '0' ) && ( value[1] == 'x' ) )
 			{
@@ -2366,7 +2366,7 @@ void KeyValues::RecursiveLoadFromBuffer( char const *resourceName, CUtlBuffer &b
 				for( int i=2; i < 2 + 16; i++ )
 				{
 					char digit = value[i];
-					if ( digit >= 'a' ) 
+					if ( digit >= 'a' )
 						digit -= 'a' - ( '9' + 1 );
 					else
 						if ( digit >= 'A' )
@@ -2379,12 +2379,12 @@ void KeyValues::RecursiveLoadFromBuffer( char const *resourceName, CUtlBuffer &b
 			}
 			else if ( (pFEnd > pIEnd) && (pFEnd == pSEnd) )
 			{
-				dat->m_flValue = fval; 
+				dat->m_flValue = fval;
 				dat->m_iDataType = TYPE_FLOAT;
 			}
 			else if (pIEnd == pSEnd && !bOverflow)
 			{
-				dat->m_iValue = ival; 
+				dat->m_iValue = ival;
 				dat->m_iDataType = TYPE_INT;
 			}
 			else
@@ -2450,7 +2450,7 @@ bool KeyValues::WriteAsBinary( CUtlBuffer &buffer )
 		return false;
 
 	// Write subkeys:
-	
+
 	// loop through all our peers
 	for ( KeyValues *dat = this; dat != NULL; dat = dat->m_pPeer )
 	{
@@ -2488,7 +2488,7 @@ bool KeyValues::WriteAsBinary( CUtlBuffer &buffer )
 
 		case TYPE_INT:
 			{
-				buffer.PutInt( dat->m_iValue );				
+				buffer.PutInt( dat->m_iValue );
 				break;
 			}
 
@@ -2522,7 +2522,7 @@ bool KeyValues::WriteAsBinary( CUtlBuffer &buffer )
 	}
 
 	// write tail, marks end of peers
-	buffer.PutUnsignedChar( TYPE_NUMTYPES ); 
+	buffer.PutUnsignedChar( TYPE_NUMTYPES );
 
 	return buffer.IsValid();
 }
@@ -2538,7 +2538,7 @@ bool KeyValues::ReadAsBinary( CUtlBuffer &buffer, int nStackDepth )
 
 	RemoveEverything(); // remove current content
 	Init();	// reset
-	
+
 	if ( nStackDepth > 100 )
 	{
 		AssertMsgOnce( false, "KeyValues::ReadAsBinary() stack depth > 100\n" );
@@ -2547,7 +2547,7 @@ bool KeyValues::ReadAsBinary( CUtlBuffer &buffer, int nStackDepth )
 
 	KeyValues	*dat = this;
 	types_t		type = (types_t)buffer.GetUnsignedChar();
-	
+
 	// loop through all our peers
 	while ( true )
 	{
@@ -2580,7 +2580,7 @@ bool KeyValues::ReadAsBinary( CUtlBuffer &buffer, int nStackDepth )
 				int len = Q_strlen( token );
 				dat->m_sValue = new char[len + 1];
 				Q_memcpy( dat->m_sValue, token, len+1 );
-								
+
 				break;
 			}
 		case TYPE_WSTRING:
@@ -2791,12 +2791,12 @@ void KeyValues::UnpackIntoStructure( KeyValuesUnpackStructure const *pUnpackTabl
 
 //-----------------------------------------------------------------------------
 // Helper function for processing a keyvalue tree for console resolution support.
-// Alters key/values for easier console video resolution support. 
+// Alters key/values for easier console video resolution support.
 // If running SD (640x480), the presence of "???_lodef" creates or slams "???".
 // If running HD (1280x720), the presence of "???_hidef" creates or slams "???".
 //-----------------------------------------------------------------------------
 bool KeyValues::ProcessResolutionKeys( const char *pResString )
-{	
+{
 	if ( !pResString )
 	{
 		// not for pc, console only
@@ -2830,7 +2830,7 @@ bool KeyValues::ProcessResolutionKeys( const char *pResString )
 				// find and delete the original key (if any)
 				KeyValues *pKey = FindKey( normalKeyName );
 				if ( pKey )
-				{		
+				{
 					// remove the key
 					RemoveSubKey( pKey );
 				}
@@ -2853,7 +2853,7 @@ bool KeyValues::Dump( IKeyValuesDumpContext *pDump, int nIndentLevel /* = 0 */ )
 {
 	if ( !pDump->KvBeginKey( this, nIndentLevel ) )
 		return false;
-	
+
 	// Dump values
 	for ( KeyValues *val = this ? GetFirstValue() : NULL; val; val = val->GetNextValue() )
 	{
@@ -2924,7 +2924,7 @@ bool IKeyValuesDumpContextAsText::KvWriteValue( KeyValues *val, int nIndentLevel
 				return false;
 		}
 		break;
-	
+
 	case KeyValues::TYPE_FLOAT:
 		{
 			float fl = val->GetFloat();

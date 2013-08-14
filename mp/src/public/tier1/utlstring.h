@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 //=============================================================================
 
@@ -10,12 +10,18 @@
 #pragma once
 #endif
 
-
+#include <string.h>
+#include <strings.h>
+#include <wchar.h>
+#include <wctype.h>
 #include "tier1/utlmemory.h"
 #include "tier1/strtools.h"
 #include "limits.h"
 
-#if defined( OSX )
+//FIXME: gcc expects things before the string constant here
+// Not sure why this is currently even needed, so make the condition for it
+// ridiculous so it will never be reached...
+#if defined( __I_AM_ON_OSX_AND_WANT_TO_EXPERIENCE_A_LOT_OF_ERRORS )
 inline wchar_t *wcsdup(const wchar_t *pString)
 {
 	wchar_t *pMemory;
@@ -124,7 +130,7 @@ inline void CUtlBinaryBlock::Purge()
 
 
 //-----------------------------------------------------------------------------
-// Simple string class. 
+// Simple string class.
 // NOTE: This is *not* optimal! Use in tools, but not runtime code
 //-----------------------------------------------------------------------------
 class CUtlString
@@ -161,7 +167,7 @@ public:
 	bool		IsEmpty() const;
 
 	// Sets the length (used to serialize into the buffer )
-	// Note: If nLen != 0, then this adds an extra byte for a null-terminator.	
+	// Note: If nLen != 0, then this adds an extra byte for a null-terminator.
 	void		SetLength( int nLen );
 	char		*Get();
 	void		Purge();
@@ -194,7 +200,7 @@ public:
 	CUtlString &operator+=( char c );
 	CUtlString &operator+=( int rhs );
 	CUtlString &operator+=( double rhs );
-	
+
 	// is valid?
 	bool IsValid() const;
 
@@ -220,14 +226,14 @@ public:
 	CUtlString Replace( char cFrom, char cTo );
 
 	// Calls right through to V_MakeAbsolutePath.
-	CUtlString AbsPath( const char *pStartingDir=NULL );	
+	CUtlString AbsPath( const char *pStartingDir=NULL );
 
 	// Gets the filename (everything except the path.. c:\a\b\c\somefile.txt -> somefile.txt).
 	CUtlString UnqualifiedFilename();
-	
+
 	// Strips off one directory. Uses V_StripLastDir but strips the last slash also!
 	CUtlString DirName();
-	
+
 	// Works like V_ComposeFileName.
 	static CUtlString PathJoin( const char *pStr1, const char *pStr2 );
 

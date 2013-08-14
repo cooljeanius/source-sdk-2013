@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //
@@ -10,6 +10,9 @@
 #ifndef DIFF_H
 #define DIFF_H
 #pragma once
+
+// Prototypes
+void Fail(char const *msg);
 
 int FindDiffs(uint8 const *NewBlock, uint8 const *OldBlock,
 			  int NewSize, int OldSize, int &DiffListSize,uint8 *Output,uint32 OutSize);

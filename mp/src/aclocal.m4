@@ -331,6 +331,26 @@ esac
 AC_SUBST([AR])dnl
 ])
 
+# Figure out how to run the assembler.                      -*- Autoconf -*-
+
+# Copyright (C) 2001-2013 Free Software Foundation, Inc.
+#
+# This file is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# AM_PROG_AS
+# ----------
+AC_DEFUN([AM_PROG_AS],
+[# By default we simply use the C compiler to build assembly code.
+AC_REQUIRE([AC_PROG_CC])
+test "${CCAS+set}" = set || CCAS=$CC
+test "${CCASFLAGS+set}" = set || CCASFLAGS=$CFLAGS
+AC_ARG_VAR([CCAS],      [assembler compiler command (defaults to CC)])
+AC_ARG_VAR([CCASFLAGS], [assembler compiler flags (defaults to CFLAGS)])
+_AM_IF_OPTION([no-dependencies],, [_AM_DEPENDENCIES([CCAS])])dnl
+])
+
 # AM_AUX_DIR_EXPAND                                         -*- Autoconf -*-
 
 # Copyright (C) 2001-2013 Free Software Foundation, Inc.
@@ -1466,7 +1486,13 @@ m4_include([m4/ax_check_gnu_make.m4])
 m4_include([m4/ax_dll_string.m4])
 m4_include([m4/ax_set_default_paths_system.m4])
 m4_include([m4/ax_sys_perlsharpbang.m4])
+m4_include([m4/ax_sys_weak_alias.m4])
 m4_include([m4/bakefile-dllar.m4])
 m4_include([m4/bakefile-lang.m4])
 m4_include([m4/bakefile.m4])
 m4_include([m4/fcntl-o.m4])
+m4_include([m4/mm-common.m4])
+m4_include([m4/mm-dietlib.m4])
+m4_include([m4/mm-doc.m4])
+m4_include([m4/mm-pkg.m4])
+m4_include([m4/mm-warnings.m4])

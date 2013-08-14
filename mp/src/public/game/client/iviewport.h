@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $Workfile:     $
 // $Date:         $
@@ -24,7 +24,7 @@ class KeyValues;
 
 abstract_class IViewPortPanel
 {
-	
+
 public:
 	virtual	~IViewPortPanel() {};
 
@@ -36,7 +36,7 @@ public:
 	virtual bool HasInputElements( void ) = 0;	// true if panel contains elments which accepts input
 
 	virtual void ShowPanel( bool state ) = 0; // activate VGUI Frame
-		
+
 	// VGUI functions:
 	virtual vgui::VPANEL GetVPanel( void ) = 0; // returns VGUI panel handle
 	virtual bool IsVisible() = 0;  // true if panel is visible
@@ -47,8 +47,8 @@ abstract_class IViewPort
 {
 public:
 	virtual void UpdateAllPanels( void ) = 0;
-	virtual void ShowPanel( const char *pName, bool state ) = 0;	
-	virtual void ShowPanel( IViewPortPanel* pPanel, bool state ) = 0;	
+	virtual void ShowPanel( const char *pName, bool state ) = 0;
+	virtual void ShowPanel( IViewPortPanel* pPanel, bool state ) = 0;
 	virtual void ShowBackGround(bool bShow) = 0;
 	virtual IViewPortPanel* FindPanelByName(const char *szPanelName) = 0;
 	virtual IViewPortPanel* GetActivePanel( void ) = 0;

@@ -1,6 +1,6 @@
 //========= Copyright Valve Corporation, All rights reserved. ============//
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================//
@@ -22,7 +22,7 @@ class URLLabel : public Label
 {
 	DECLARE_CLASS_SIMPLE( URLLabel, Label );
 
-public:	
+public:
 	URLLabel(Panel *parent, const char *panelName, const char *text, const char *pszURL);
 	URLLabel(Panel *parent, const char *panelName, const wchar_t *wszText, const char *pszURL);
     ~URLLabel();
@@ -45,5 +45,8 @@ private:
 };
 
 }
+
+// missing prototypes
+vgui::Panel *URLLabel_Factory();
 
 #endif // URLLABEL_H
