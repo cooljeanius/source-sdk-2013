@@ -50,20 +50,22 @@ AC_LANG_POP([C])
 # Checks for libraries.
 AC_CHECK_LIB([c],[main])
 AC_CHECK_LIB([dl],[dlopen])
+AC_CHECK_LIB([glib],[main])
+AC_CHECK_LIB([iconv],[iconv])
 AC_CHECK_LIB([m],[cos])
 AC_LANG([C++])
 AC_CHECK_LIB([tier0],[main],[AC_CHECK_LIB([tier1],[main])])
 
 # Checks for header files.
 AC_FUNC_ALLOCA
-AC_CHECK_HEADERS([ctype.h dlfcn.h fcntl.h float.h limits.h locale.h malloc.h \
-malloc/malloc.h math.h mathlib/mathlib.h mathlib/vector.h mem.h netdb.h \
-netinet/in.h stdarg.h stddef.h stdio.h string_t.h sys/mount.h sys/socket.h \
-sys/statvfs.h sys/time.h sys/timeb.h tier0/memdbgon.h tier0/platform.h time.h \
-timeb.h utime.h utlvector.h vgui/VGUI.h vgui_controls/Controls.h \
-vgui_controls/cvartogglecheckbutton.h vgui_controls/Frame.h vgui/IScheme.h \
-vgui/ISurface.h vgui_controls/Panel.h vgui_controls/PHandle.h wchar.h \
-wchartypes.h wctype.h xboxmath.h xmmintrin.h])
+AC_CHECK_HEADERS([ctype.h dlfcn.h fcntl.h float.h iconv.h limits.h \
+locale.h malloc.h malloc/malloc.h math.h mathlib/mathlib.h \
+mathlib/vector.h mem.h netdb.h netinet/in.h stdarg.h stddef.h stdio.h \
+string_t.h sys/mount.h sys/socket.h sys/statvfs.h sys/time.h \
+sys/timeb.h tier0/memdbgon.h tier0/platform.h time.h timeb.h utime.h \
+utlvector.h vgui/VGUI.h vgui_controls/Controls.h \
+vgui_controls/cvartogglecheckbutton.h vgui_controls/Frame.h \
+vgui/IScheme.h vgui/ISurface.h vgui_controls/Panel.h vgui_controls/PHandle.h wchar.h wchartypes.h wctype.h xboxmath.h xmmintrin.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL
@@ -91,7 +93,7 @@ AC_FUNC_MMAP
 AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([asctime atexit clock ctime difftime floor getcwd \
-gethostbyname gettimeofday gmtime iswprint localtime memchr memcmp \
+gethostbyname gettimeofday gmtime iconv iswprint localtime memchr memcmp \
 memcpy memmove memset mkdir mktime  munmap pow printf rint scanf select \
 setenv setlocale socket sqrt strcasecmp strcat strchr strcmp strcoll \
 strcpy strcspn strdup strerror strftime strlen strncat strncmp strncpy \

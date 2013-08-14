@@ -1316,6 +1316,36 @@
 		0000000000501D0300193890 /* libmathlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0000000000101D0200193890 /* libmathlib.a */; };
 		0000000000501D0301023DF0 /* libtier1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0000000000101D0201023DF0 /* libtier1.a */; };
 		0000000000701D0301023DF0 /* libtier1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0000000000101D0201023DF0 /* libtier1.a */; };
+		A54056E217BC41A600CC1DFB /* Color.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101BBD0 /* Color.h */; };
+		A54056E317BC41A600CC1DFB /* eiface.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D02010196C0 /* eiface.h */; };
+		A54056E417BC41A600CC1DFB /* iserverplugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101BFC0 /* iserverplugin.h */; };
+		A54056E517BC41A600CC1DFB /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D0201019740 /* filesystem.h */; };
+		A54056E617BC41A600CC1DFB /* iplayerinfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101BF10 /* iplayerinfo.h */; };
+		A54056E717BC41A600CC1DFB /* igameevents.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D0201019780 /* igameevents.h */; };
+		A54056E817BC41A600CC1DFB /* basetypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D0201019240 /* basetypes.h */; };
+		A54056E917BC41A600CC1DFB /* dbg.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101BC10 /* dbg.h */; };
+		A54056EA17BC41A600CC1DFB /* icommandline.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101BD80 /* icommandline.h */; };
+		A54056EB17BC41A600CC1DFB /* mem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C0B0 /* mem.h */; };
+		A54056EC17BC41A600CC1DFB /* memalloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C130 /* memalloc.h */; };
+		A54056ED17BC41A600CC1DFB /* memdbgon.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C1B0 /* memdbgon.h */; };
+		A54056EE17BC41A600CC1DFB /* interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101BE50 /* interface.h */; };
+		A54056EF17BC41A600CC1DFB /* KeyValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C030 /* KeyValues.h */; };
+		A54056F017BC41A600CC1DFB /* strtools.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C230 /* strtools.h */; };
+		A54056F117BC41A600CC1DFB /* utlbuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C2B0 /* utlbuffer.h */; };
+		A54056F217BC41A600CC1DFB /* utlmemory.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C330 /* utlmemory.h */; };
+		A54056F317BC41A600CC1DFB /* utlvector.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C3B0 /* utlvector.h */; };
+		A54056F417BC41A600CC1DFB /* vstdlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020101C430 /* vstdlib.h */; };
+		A54056F917BC426A00CC1DFB /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018A880 /* libiconv.dylib */; };
+		A540570617BC43BE00CC1DFB /* serverplugin_bot.h in Headers */ = {isa = PBXBuildFile; fileRef = A540570517BC43BE00CC1DFB /* serverplugin_bot.h */; };
+		A540573117BC45FC00CC1DFB /* memoverride.h in Headers */ = {isa = PBXBuildFile; fileRef = A540573017BC45FC00CC1DFB /* memoverride.h */; };
+		A540574B17BC47E700CC1DFB /* BaseVSShader.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018D110 /* BaseVSShader.h */; };
+		A540574C17BC47E700CC1DFB /* common_fxc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018D130 /* common_fxc.h */; };
+		A540574D17BC47E700CC1DFB /* common_hlsl_cpp_consts.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018AC40 /* common_hlsl_cpp_consts.h */; };
+		A540574E17BC47E700CC1DFB /* common_ps_fxc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018AC60 /* common_ps_fxc.h */; };
+		A540574F17BC47E700CC1DFB /* common_vertexlitgeneric_dx9.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018D030 /* common_vertexlitgeneric_dx9.h */; };
+		A540575017BC47E700CC1DFB /* common_vs_fxc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018AD00 /* common_vs_fxc.h */; };
+		A540575117BC47E700CC1DFB /* example_model_dx9_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018AD80 /* example_model_dx9_helper.h */; };
+		A540575217BC47E700CC1DFB /* shader_constant_register_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000000101D020018AD20 /* shader_constant_register_map.h */; };
 		A5570EEA179AE73F0030CD56 /* libmathlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5570EE9179AE73F0030CD56 /* libmathlib.a */; };
 		A5570EEB179AE73F0030CD56 /* libmathlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5570EE9179AE73F0030CD56 /* libmathlib.a */; };
 		A5570EED179AE73F0030CD56 /* libmathlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5570EE9179AE73F0030CD56 /* libmathlib.a */; };
@@ -4201,6 +4231,8 @@
 		0000000000101D021B0F3F2A /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = "/Users/ericgallager/source-sdk-2013/mp/src/devtools/debug.xcconfig"; sourceTree = "<absolute>"; };
 		0000000000101D021B0F3F39 /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = release.xcconfig; path = "/Users/ericgallager/source-sdk-2013/mp/src/devtools/release.xcconfig"; sourceTree = "<absolute>"; };
 		0000000000101D021B0F3F4A /* base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = base.xcconfig; path = "/Users/ericgallager/source-sdk-2013/mp/src/devtools/base.xcconfig"; sourceTree = "<absolute>"; };
+		A540570517BC43BE00CC1DFB /* serverplugin_bot.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = serverplugin_bot.h; path = public/engine/serverplugin_bot.h; sourceTree = "<group>"; };
+		A540573017BC45FC00CC1DFB /* memoverride.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = memoverride.h; path = public/memoverride.h; sourceTree = "<group>"; };
 		A5570EE6179AE73F0030CD56 /* client.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = client.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5570EE8179AE73F0030CD56 /* game_shader_dx9.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = game_shader_dx9.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5570EE9179AE73F0030CD56 /* libmathlib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmathlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4305,6 +4337,7 @@
 				0000000000501D0300193890 /* libmathlib.a in Frameworks */,
 				A5570EED179AE73F0030CD56 /* libmathlib.a in Frameworks */,
 				A5570EF4179AE73F0030CD56 /* libtier1.a in Frameworks */,
+				A54056F917BC426A00CC1DFB /* libiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7003,6 +7036,7 @@
 		0000000000301D01001BFB40 /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
+				A540573017BC45FC00CC1DFB /* memoverride.h */,
 				0000000000101D020101BBD0 /* Color.h */,
 				0000000000101D02010196C0 /* eiface.h */,
 				0000000000101D020101BFC0 /* iserverplugin.h */,
@@ -7022,6 +7056,7 @@
 				0000000000101D020101C330 /* utlmemory.h */,
 				0000000000101D020101C3B0 /* utlvector.h */,
 				0000000000101D020101C430 /* vstdlib.h */,
+				A540570517BC43BE00CC1DFB /* serverplugin_bot.h */,
 			);
 			name = "Header Files";
 			sourceTree = "<group>";
@@ -7372,6 +7407,52 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		A54056F817BC41C300CC1DFB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A540573117BC45FC00CC1DFB /* memoverride.h in Headers */,
+				A540570617BC43BE00CC1DFB /* serverplugin_bot.h in Headers */,
+				A54056E217BC41A600CC1DFB /* Color.h in Headers */,
+				A54056E317BC41A600CC1DFB /* eiface.h in Headers */,
+				A54056E417BC41A600CC1DFB /* iserverplugin.h in Headers */,
+				A54056E517BC41A600CC1DFB /* filesystem.h in Headers */,
+				A54056E617BC41A600CC1DFB /* iplayerinfo.h in Headers */,
+				A54056E717BC41A600CC1DFB /* igameevents.h in Headers */,
+				A54056E817BC41A600CC1DFB /* basetypes.h in Headers */,
+				A54056E917BC41A600CC1DFB /* dbg.h in Headers */,
+				A54056EA17BC41A600CC1DFB /* icommandline.h in Headers */,
+				A54056EB17BC41A600CC1DFB /* mem.h in Headers */,
+				A54056EC17BC41A600CC1DFB /* memalloc.h in Headers */,
+				A54056ED17BC41A600CC1DFB /* memdbgon.h in Headers */,
+				A54056EE17BC41A600CC1DFB /* interface.h in Headers */,
+				A54056EF17BC41A600CC1DFB /* KeyValues.h in Headers */,
+				A54056F017BC41A600CC1DFB /* strtools.h in Headers */,
+				A54056F117BC41A600CC1DFB /* utlbuffer.h in Headers */,
+				A54056F217BC41A600CC1DFB /* utlmemory.h in Headers */,
+				A54056F317BC41A600CC1DFB /* utlvector.h in Headers */,
+				A54056F417BC41A600CC1DFB /* vstdlib.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A540575E17BC47F400CC1DFB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A540574B17BC47E700CC1DFB /* BaseVSShader.h in Headers */,
+				A540574C17BC47E700CC1DFB /* common_fxc.h in Headers */,
+				A540574D17BC47E700CC1DFB /* common_hlsl_cpp_consts.h in Headers */,
+				A540574E17BC47E700CC1DFB /* common_ps_fxc.h in Headers */,
+				A540574F17BC47E700CC1DFB /* common_vertexlitgeneric_dx9.h in Headers */,
+				A540575017BC47E700CC1DFB /* common_vs_fxc.h in Headers */,
+				A540575117BC47E700CC1DFB /* example_model_dx9_helper.h in Headers */,
+				A540575217BC47E700CC1DFB /* shader_constant_register_map.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		0000000000101D0900816C00 /* client (hl2mp) */ = {
 			isa = PBXNativeTarget;
@@ -7470,6 +7551,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0000000000101D0E0081A200 /* Build configuration list for PBXNativeTarget "serverplugin_empty" */;
 			buildPhases = (
+				A54056F817BC41C300CC1DFB /* Headers */,
 				0000000000101D040081A200 /* Sources */,
 				0000000000101D050081A200 /* Frameworks */,
 				0000000000201D080081A200 /* ShellScript */,
@@ -7489,6 +7571,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0000000000101D0E0081AA00 /* Build configuration list for PBXNativeTarget "shaders (hl2mp)" */;
 			buildPhases = (
+				A540575E17BC47F400CC1DFB /* Headers */,
 				0000000000101D040081AA00 /* Sources */,
 				0000000000101D050081AA00 /* Frameworks */,
 				0000000000201D080081AA00 /* ShellScript */,
@@ -9464,6 +9547,7 @@
 				MACH_O_TYPE = mh_dylib;
 				OTHER_CFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CPLUSPLUSFLAGS)";
+				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_NAME = serverplugin_empty;
 				USER_HEADER_SEARCH_PATHS = "/Users/ericgallager/source-sdk-2013/mp/src/common /Users/ericgallager/source-sdk-2013/mp/src/public /Users/ericgallager/source-sdk-2013/mp/src/public/tier0 /Users/ericgallager/source-sdk-2013/mp/src/public/tier1 /Users/ericgallager/source-sdk-2013/mp/src/thirdparty/SDL2 /Users/ericgallager/source-sdk-2013/mp/src/game/server /Users/ericgallager/source-sdk-2013/mp/src/game/shared";
 			};
@@ -9584,7 +9668,28 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0000000000101D021B0F3F2A /* debug.xcconfig */;
 			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_EXCEPTIONS = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SSE41_EXTENSIONS = YES;
+				GCC_ENABLE_SSE42_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				GENERATE_PROFILING_CODE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/malloc;
+				LD_GENERATE_MAP_FILE = YES;
 				PRODUCT_NAME = All;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};

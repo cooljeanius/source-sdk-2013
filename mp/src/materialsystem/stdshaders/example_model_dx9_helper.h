@@ -35,12 +35,17 @@ struct ExampleModel_DX9_Vars_t
 void InitParamsExampleModel_DX9( CBaseVSShader *pShader, IMaterialVar** params,
 						 const char *pMaterialName, ExampleModel_DX9_Vars_t &info );
 
-void InitExampleModel_DX9( CBaseVSShader *pShader, IMaterialVar** params, 
+void InitExampleModel_DX9( CBaseVSShader *pShader, IMaterialVar** params,
 				   ExampleModel_DX9_Vars_t &info );
 
 void DrawExampleModel_DX9( CBaseVSShader *pShader, IMaterialVar** params, IShaderDynamicAPI *pShaderAPI,
 				   IShaderShadow* pShaderShadow,
 				   ExampleModel_DX9_Vars_t &info, VertexCompressionType_t vertexCompression,
 				   CBasePerMaterialContextData **pContextDataPtr );
+
+// missing prototypes
+void DrawExampleModel_DX9_Internal( CBaseVSShader *pShader, IMaterialVar** params, IShaderDynamicAPI *pShaderAPI, IShaderShadow* pShaderShadow,
+								   bool bHasFlashlight, ExampleModel_DX9_Vars_t &info, VertexCompressionType_t vertexCompression,
+								   CBasePerMaterialContextData **pContextDataPtr );
 
 #endif // EXAMPLE_MODEL_DX9_HELPER_H

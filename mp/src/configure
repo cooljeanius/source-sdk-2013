@@ -5884,6 +5884,90 @@ _ACEOF
 
 fi
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lglib" >&5
+$as_echo_n "checking for main in -lglib... " >&6; }
+if ${ac_cv_lib_glib_main+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lglib  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_glib_main=yes
+else
+  ac_cv_lib_glib_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_glib_main" >&5
+$as_echo "$ac_cv_lib_glib_main" >&6; }
+if test "x$ac_cv_lib_glib_main" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBGLIB 1
+_ACEOF
+
+  LIBS="-lglib $LIBS"
+
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for iconv in -liconv" >&5
+$as_echo_n "checking for iconv in -liconv... " >&6; }
+if ${ac_cv_lib_iconv_iconv+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-liconv  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char iconv ();
+int
+main ()
+{
+return iconv ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_iconv_iconv=yes
+else
+  ac_cv_lib_iconv_iconv=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_iconv_iconv" >&5
+$as_echo "$ac_cv_lib_iconv_iconv" >&6; }
+if test "x$ac_cv_lib_iconv_iconv" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBICONV 1
+_ACEOF
+
+  LIBS="-liconv $LIBS"
+
+fi
+
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for cos in -lm" >&5
 $as_echo_n "checking for cos in -lm... " >&6; }
 if ${ac_cv_lib_m_cos+:} false; then :
@@ -6340,14 +6424,14 @@ _ACEOF
 
 fi
 
-for ac_header in ctype.h dlfcn.h fcntl.h float.h limits.h locale.h malloc.h \
-malloc/malloc.h math.h mathlib/mathlib.h mathlib/vector.h mem.h netdb.h \
-netinet/in.h stdarg.h stddef.h stdio.h string_t.h sys/mount.h sys/socket.h \
-sys/statvfs.h sys/time.h sys/timeb.h tier0/memdbgon.h tier0/platform.h time.h \
-timeb.h utime.h utlvector.h vgui/VGUI.h vgui_controls/Controls.h \
-vgui_controls/cvartogglecheckbutton.h vgui_controls/Frame.h vgui/IScheme.h \
-vgui/ISurface.h vgui_controls/Panel.h vgui_controls/PHandle.h wchar.h \
-wchartypes.h wctype.h xboxmath.h xmmintrin.h
+for ac_header in ctype.h dlfcn.h fcntl.h float.h iconv.h limits.h \
+locale.h malloc.h malloc/malloc.h math.h mathlib/mathlib.h \
+mathlib/vector.h mem.h netdb.h netinet/in.h stdarg.h stddef.h stdio.h \
+string_t.h sys/mount.h sys/socket.h sys/statvfs.h sys/time.h \
+sys/timeb.h tier0/memdbgon.h tier0/platform.h time.h timeb.h utime.h \
+utlvector.h vgui/VGUI.h vgui_controls/Controls.h \
+vgui_controls/cvartogglecheckbutton.h vgui_controls/Frame.h \
+vgui/IScheme.h vgui/ISurface.h vgui_controls/Panel.h vgui_controls/PHandle.h wchar.h wchartypes.h wctype.h xboxmath.h xmmintrin.h
 do :
   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
 ac_fn_cxx_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
@@ -7798,7 +7882,7 @@ fi
 fi
 
 for ac_func in asctime atexit clock ctime difftime floor getcwd \
-gethostbyname gettimeofday gmtime iswprint localtime memchr memcmp \
+gethostbyname gettimeofday gmtime iconv iswprint localtime memchr memcmp \
 memcpy memmove memset mkdir mktime  munmap pow printf rint scanf select \
 setenv setlocale socket sqrt strcasecmp strcat strchr strcmp strcoll \
 strcpy strcspn strdup strerror strftime strlen strncat strncmp strncpy \

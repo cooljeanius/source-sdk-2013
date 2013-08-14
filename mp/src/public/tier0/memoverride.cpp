@@ -20,6 +20,7 @@
 #include "tier0/memalloc.h"
 #include <string.h>
 #include <stdio.h>
+#include "memoverride.h"
 #include "memdbgoff.h"
 
 #ifdef _WIN32
@@ -109,8 +110,8 @@ inline void *ReallocUnattributed( void *pMem, size_t nSize )
 // under linux this malloc() overrides the libc malloc() and so we
 // end up in a recursion (as g_pMemAlloc->Alloc() calls malloc)
 #if _MSC_VER >= 1400
-#define ALLOC_CALL _CRTNOALIAS _CRTRESTRICT 
-#define FREE_CALL _CRTNOALIAS 
+#define ALLOC_CALL _CRTNOALIAS _CRTRESTRICT
+#define FREE_CALL _CRTNOALIAS
 #else
 #define ALLOC_CALL
 #define FREE_CALL
@@ -118,7 +119,7 @@ inline void *ReallocUnattributed( void *pMem, size_t nSize )
 
 extern "C"
 {
-	
+
 ALLOC_CALL void *malloc( size_t nSize )
 {
 	return AllocUnattributed( nSize );
@@ -311,7 +312,7 @@ int __cdecl _heapwalk( _HEAPINFO * )
 
 extern "C"
 {
-	
+
 void *malloc_db( size_t nSize, const char *pFileName, int nLine )
 {
 	return g_pMemAlloc->Alloc(nSize, pFileName, nLine);
@@ -326,7 +327,7 @@ void *realloc_db( void *pMem, size_t nSize, const char *pFileName, int nLine )
 {
 	return g_pMemAlloc->Realloc(pMem, nSize, pFileName, nLine);
 }
-	
+
 } // end extern "C"
 
 //-----------------------------------------------------------------------------
@@ -425,7 +426,7 @@ public:
 			g_pMemAlloc->PushAllocDbgInfo(CRT_INTERNAL_FILE_NAME, 0);
 		}
 	}
-	
+
 	~CAttibCRT()
 	{
 		if (m_nBlockUse == _CRT_BLOCK)
@@ -433,7 +434,7 @@ public:
 			g_pMemAlloc->PopAllocDbgInfo();
 		}
 	}
-	
+
 private:
 	int m_nBlockUse;
 };
@@ -447,7 +448,7 @@ private:
 
 extern "C"
 {
-	
+
 void *__cdecl _nh_malloc_dbg( size_t nSize, int nFlag, int nBlockUse,
 								const char *pFileName, int nLine )
 {
@@ -463,7 +464,7 @@ void *__cdecl _malloc_dbg( size_t nSize, int nBlockUse,
 }
 
 #if defined( _X360 )
-void *__cdecl _calloc_dbg_impl( size_t nNum, size_t nSize, int nBlockUse, 
+void *__cdecl _calloc_dbg_impl( size_t nNum, size_t nSize, int nBlockUse,
 								const char * szFileName, int nLine, int * errno_tmp )
 {
 	return _calloc_dbg( nNum, nSize, nBlockUse, szFileName, nLine );
@@ -479,7 +480,7 @@ void *__cdecl _calloc_dbg( size_t nNum, size_t nSize, int nBlockUse,
 	return pMem;
 }
 
-void *__cdecl _calloc_dbg_impl( size_t nNum, size_t nSize, int nBlockUse, 
+void *__cdecl _calloc_dbg_impl( size_t nNum, size_t nSize, int nBlockUse,
 	const char * szFileName, int nLine, int * errno_tmp )
 {
 	return _calloc_dbg( nNum, nSize, nBlockUse, szFileName, nLine );
@@ -613,7 +614,7 @@ ALLOC_CALL void * __cdecl _aligned_offset_recalloc( void * memblock, size_t coun
 
 extern "C"
 {
-	
+
 int _CrtDumpMemoryLeaks(void)
 {
 	return 0;
@@ -660,7 +661,7 @@ long __cdecl _CrtSetBreakAlloc( long lNewBreakAlloc )
 {
 	return g_pMemAlloc->CrtSetBreakAlloc( lNewBreakAlloc );
 }
-					 
+
 int __cdecl _CrtIsValidHeapPointer( const void *pMem )
 {
 	return g_pMemAlloc->CrtIsValidHeapPointer( pMem );
@@ -692,7 +693,7 @@ int __cdecl _CrtMemDifference( _CrtMemState *pState, const _CrtMemState * oldSta
 
 void __cdecl _CrtMemDumpStatistics( const _CrtMemState *pState )
 {
-	DebuggerBreak();	
+	DebuggerBreak();
 }
 
 void __cdecl _CrtMemCheckpoint( _CrtMemState *pState )
@@ -713,7 +714,7 @@ void __cdecl _CrtDoForAllClientObjects( void (*pfn)(void *, void *), void * pCon
 
 
 //-----------------------------------------------------------------------------
-// Methods in dbgrpt.cpp 
+// Methods in dbgrpt.cpp
 //-----------------------------------------------------------------------------
 long _crtAssertBusy = -1;
 
@@ -828,7 +829,7 @@ void __cdecl WriteMiniDumpOrBreak( int dummy, const char *pchName )
 	else
 	{
 		WriteMiniDump( pchName );
-		// Call Plat_ExitProcess so we don't continue in a bad state. 
+		// Call Plat_ExitProcess so we don't continue in a bad state.
 		TerminateProcess(GetCurrentProcess(), 0);
 	}
 }
@@ -839,9 +840,9 @@ void __cdecl VPureCall()
 }
 
 void VInvalidParameterHandler(const wchar_t* expression,
-   const wchar_t* function, 
-   const wchar_t* file, 
-   unsigned int line, 
+   const wchar_t* function,
+   const wchar_t* file,
+   unsigned int line,
    uintptr_t pReserved)
 {
 	WriteMiniDumpOrBreak( 1, "InvalidParameterHandler" );
@@ -864,7 +865,7 @@ ErrorHandlerRegistrar::ErrorHandlerRegistrar()
 }
 
 #if defined( _DEBUG )
- 
+
 // wrapper which passes no debug info; not available in debug
 #ifndef	SUPPRESS_INVALID_PARAMETER_NO_INFO
 void __cdecl _invalid_parameter_noinfo(void)
@@ -884,21 +885,21 @@ int __cdecl __crtMessageWindowW( int nRptType, const wchar_t * szFile, const wch
 	return 0;
 }
 
-int __cdecl _CrtDbgReportV( int nRptType, const wchar_t *szFile, int nLine, 
+int __cdecl _CrtDbgReportV( int nRptType, const wchar_t *szFile, int nLine,
 						    const wchar_t *szModule, const wchar_t *szFormat, va_list arglist )
 {
 	Assert(0);
 	return 0;
 }
 
-int __cdecl _CrtDbgReportW( int nRptType, const wchar_t *szFile, int nLine, 
+int __cdecl _CrtDbgReportW( int nRptType, const wchar_t *szFile, int nLine,
 						    const wchar_t *szModule, const wchar_t *szFormat, ...)
 {
 	Assert(0);
 	return 0;
 }
 
-int __cdecl _VCrtDbgReportA( int nRptType, const wchar_t * szFile, int nLine, 
+int __cdecl _VCrtDbgReportA( int nRptType, const wchar_t * szFile, int nLine,
 							 const wchar_t * szModule, const wchar_t * szFormat, va_list arglist )
 {
 	Assert(0);
@@ -910,7 +911,7 @@ int __cdecl _CrtSetReportHook2( int mode, _CRT_REPORT_HOOK pfnNewHook )
 	_CrtSetReportHook( pfnNewHook );
 	return 0;
 }
- 
+
 
 #endif  /* defined( _DEBUG ) || defined( USE_MEM_DEBUG ) */
 
@@ -965,8 +966,8 @@ int __cdecl _CrtReportBlockType(const void * pUserData)
 // to help identify debug binaries.
 #ifdef _WIN32
 	#ifndef NDEBUG // _DEBUG
-		#pragma data_seg("ValveDBG") 
-		volatile const char* DBG = "*** DEBUG STUB ***";                     
+		#pragma data_seg("ValveDBG")
+		volatile const char* DBG = "*** DEBUG STUB ***";
 	#endif
 #endif
 
@@ -1020,7 +1021,7 @@ void __cdecl _free_dbg_nolock( void * pUserData, int nBlockUse)
 
 _CRT_ALLOC_HOOK __cdecl _CrtGetAllocHook ( void)
 {
-		assert(0); 
+		assert(0);
         return NULL;
 }
 
@@ -1033,7 +1034,7 @@ static int __cdecl CheckBytes( unsigned char * pb, unsigned char bCheck, size_t 
 
 _CRT_DUMP_CLIENT __cdecl _CrtGetDumpClient ( void)
 {
-		assert(0); 
+		assert(0);
         return NULL;
 }
 
@@ -1063,7 +1064,7 @@ void * __cdecl _aligned_offset_malloc_dbg( size_t size, size_t align, size_t off
     return _aligned_offset_malloc(size, align, offset);
 }
 
-void * __cdecl _aligned_offset_realloc_dbg( void * memblock, size_t size, size_t align, 
+void * __cdecl _aligned_offset_realloc_dbg( void * memblock, size_t size, size_t align,
                  size_t offset, const char * f_name, int line_n)
 {
     return _aligned_offset_realloc(memblock, size, align, offset);
