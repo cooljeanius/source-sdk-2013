@@ -16,7 +16,8 @@
 #include "limits.h"
 
 #if defined( OSX )
-inline wchar_t *wcsdup(const wchar_t *pString)
+#define wcsdup wcsdup_osx
+inline wchar_t *wcsdup_osx(const wchar_t *pString)
 {
 	wchar_t *pMemory;
 
@@ -331,6 +332,7 @@ public:
 	void Clear() { Set( NULL ); }
 
 	const T *Get() const { return m_pString ? m_pString : StringFuncs<T>::EmptyString(); }
+	operator const T*() const { return m_pString ? m_pString : StringFuncs<T>::EmptyString(); }
 
 	bool IsEmpty() const { return m_pString == NULL; } // Note: empty strings are never stored by Set
 
